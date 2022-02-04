@@ -17,7 +17,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
 
           script: |
-            rm -rf slackbot
+            rm -rf acronym-slackbot
             git clone git@github.com:ryancheley/acronym-slackbot.git
 
             source /home/slackbot/venv/bin/activate
@@ -26,7 +26,7 @@ jobs:
 
             rm -rf /home/slackbot/core
 
-            cp -r /root/slackbot/ /home/slackbot/core
+            cp -r /root/acronym-slackbot/ /home/slackbot/core
 
             cp /home/slackbot/.env /home/slackbot/core/core/.env
 
