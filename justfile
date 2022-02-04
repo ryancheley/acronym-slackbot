@@ -5,13 +5,13 @@ test:
 
 # deploys the code to the `target` server, which can be either an IP Address or alias to an IP
 deploy target: test
-    @echo 'Deploying to {{target}}...'
+    echo 'Deploying to {{target}}...'
     cd {{invocation_directory()}}/scripts; ./deploy.sh {{target}}
 
 # merge current branch with dev
 branch_name := `git branch --show-current`
 merge:
-    @echo "{{branch_name}}"
+    echo "{{branch_name}}"
     git switch dev
     git merge "{{branch_name}}"
 
@@ -25,7 +25,7 @@ gitclean:
 
 # runs mutation testing
 mutmut:
-    @echo 'This may take a while ... got do something nice for yourself'
+    echo 'This may take a while ... got do something nice for yourself'
     mutmut run
 
 # builds the styles.css into the static directory
@@ -34,10 +34,10 @@ style-build:
 
 # checks the deployment for prod settings; will return error if the check doesn't pass
 check:
-    cp {{cookiecutter.project_slug}}/.env {{cookiecutter.project_slug}}/.env_staging
-    cp {{cookiecutter.project_slug}}/.env_prod {{cookiecutter.project_slug}}/.env
+    cp core/.env core/.env_staging
+    cp core/.env_prod core/.env
     -python manage.py check --deploy
-    cp {{cookiecutter.project_slug}}/.env_staging {{cookiecutter.project_slug}}/.env
+    cp core/.env_staging core/.env
 
 # pulls from branch
 sync branch:
@@ -48,8 +48,3 @@ sync branch:
 lint:
     pre-commit run --all-files
 
-# creates graph of models
-graph:
-    python manage.py graph_models \
-        {{cookiecutter.project_slug}}
-        -o my_project_visualized.png
