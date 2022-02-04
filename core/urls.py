@@ -1,10 +1,10 @@
-from django.contrib import admin
-from django.urls import path, include
 from django.conf import settings
+from django.contrib import admin
+from django.urls import include, path
 
 urlpatterns = [
-    path('backend/', admin.site.urls),
-    # once api's are added, uncomment the line below
+    path("backend/", admin.site.urls),
+    path("", include("acronyms.urls")),
     path("api/", include("api.urls")),
 ]
 
