@@ -1,0 +1,24 @@
+repos:
+-   repo: https://github.com/psf/black
+    rev: 21.10b0
+    hooks:
+    - id: black
+      language_version: python3.9
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 4.0.1
+    hooks:
+    - id: flake8
+-   repo: https://github.com/rtts/djhtml
+    rev: v1.4.9
+    hooks:
+    - id: djhtml
+-   repo: https://github.com/guilatrova/tryceratops
+    rev: v0.6.0
+    hooks:
+    - id: tryceratops
+-   repo: https://github.com/pycqa/isort
+    rev: 5.10.1
+    hooks:
+    - id: isort
+      args: ["--profile", "black"]
+      name: isort (python)

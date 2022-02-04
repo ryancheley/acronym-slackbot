@@ -1,0 +1,12 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: daily
+      time: "05:00"
+      timezone: "Etc/UTC"
+    target-branch: "dev"
+    labels:
+      - maintenance
+      - dependencies

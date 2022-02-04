@@ -1,0 +1,43 @@
+name: Prod CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: deploy code
+        uses: appleboy/ssh-action@v0.1.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          key: ${{ secrets.SSH_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}
+
+          script: |
+            rm -rf core
+            git clone git@github.com:ryancheley/core.git
+
+            source /home/core/venv/bin/activate
+
+            cd /home/core/
+
+            rm -rf /home/core/core
+
+            cp -r /root/core/ /home/core/core
+
+            cp /home/core/.env /home/core/core/core/.env
+
+            pip -q install -r /home/core/core/requirements.txt
+
+            python /home/core/core/manage.py migrate
+
+            mkdir /home/core/core/static
+            mkdir /home/core/core/staticfiles
+
+            python /home/core/core/manage.py collectstatic --noinput -v0
+
+            systemctl daemon-reload
+            systemctl restart core
