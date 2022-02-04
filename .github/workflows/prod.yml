@@ -17,27 +17,26 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
 
           script: |
-            rm -rf core
-            git clone git@github.com:ryancheley/core.git
+            rm -rf slackbot
+            git clone git@github.com:ryancheley/acronym-slackbot.git
 
-            source /home/core/venv/bin/activate
+            source /home/slackbot/venv/bin/activate
 
-            cd /home/core/
+            cd /home/slackbot/
 
-            rm -rf /home/core/core
+            rm -rf /home/slackbot/core
 
-            cp -r /root/core/ /home/core/core
+            cp -r /root/slackbot/ /home/slackbot/core
 
-            cp /home/core/.env /home/core/core/core/.env
+            cp /home/slackbot/.env /home/slackbot/core/core/.env
 
-            pip -q install -r /home/core/core/requirements.txt
+            pip -q install -r /home/slackbot/core/requirements/production.txt
 
-            python /home/core/core/manage.py migrate
+            python /home/slackbot/core/manage.py migrate
 
-            mkdir /home/core/core/static
-            mkdir /home/core/core/staticfiles
+            mkdir /home/slackbot/core/static
 
-            python /home/core/core/manage.py collectstatic --noinput -v0
+            python /home/slackbot/core/manage.py collectstatic --noinput -v0
 
             systemctl daemon-reload
-            systemctl restart core
+            systemctl restart slackbot
