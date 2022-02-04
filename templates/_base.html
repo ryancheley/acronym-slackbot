@@ -5,23 +5,23 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-        <title>
-                {{ pages.slug }}
-        </title>
-    </head>
-    {% include '_navigation.html' %}
-    <body class="m-10">
-        {% if messages %}
-            <ul class="messages">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+            <title>
+            {{ pages.slug }}
+            </title>
+            </head>
+            {% include '_navigation.html' %}
+            <body class="m-10">
+            {% if messages %}
+                <ul class="messages">
                 {% for message in messages %}
                     <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
                 {% endfor %}
-            </ul>
-        {% endif %}
-        {% block content %}
-        {% endblock content %}
-        <script src="https://unpkg.com/htmx.org@1.1.0"></script>
+                </ul>
+            {% endif %}
+            {% block content %}
+            {% endblock content %}
+            <script src="https://unpkg.com/htmx.org@1.1.0"></script>
         <script>
             document.body.addEventListener('htmx:configRequest', (event) => {
                 event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';

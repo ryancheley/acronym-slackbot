@@ -1,4 +1,3 @@
-from pyexpat import model
 from django.db import models
 
 
@@ -10,10 +9,8 @@ class Acronym(models.Model):
         self.acronym = self.acronym.lower()
         super(Acronym, self).save(*args, **kwargs)
 
-
     class Meta:
-        unique_together = ('acronym', 'definition')
-
+        unique_together = ("acronym", "definition")
 
     def __str__(self) -> str:
         return self.acronym

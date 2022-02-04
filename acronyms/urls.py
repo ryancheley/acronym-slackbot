@@ -4,6 +4,4 @@ from .views import HomePageTemplateView
 
 app_name = "acronyms"
 
-urlpatterns = [
-    path("", HomePageTemplateView.as_view(), name="home_page")
-]
+urlpatterns = [path("", HomePageTemplateView.as_view(), name="home_page")]

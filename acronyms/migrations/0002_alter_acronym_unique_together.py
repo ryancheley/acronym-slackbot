@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('acronyms', '0001_initial'),
+        ("acronyms", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterUniqueTogether(
-            name='acronym',
-            unique_together={('acronym', 'definition')},
+            name="acronym",
+            unique_together={("acronym", "definition")},
         ),
     ]
