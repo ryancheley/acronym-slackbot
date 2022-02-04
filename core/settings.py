@@ -232,6 +232,7 @@ csp_list = [
     "'self data:",
     "https://fonts.googleapis.com",
     "https://use.fontawesome.com",
+    "https://slackbot.ryancheley.com",
     "http://127.0.0.1:8000",
     "http://www.bohemiancoding.com",
     "http://www.w3.org",
