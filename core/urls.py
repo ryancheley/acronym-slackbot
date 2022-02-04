@@ -4,7 +4,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('backend/', admin.site.urls),
-    # once api's are added, uncomment the line below
+    path("", include("acronyms.urls")),
     path("api/", include("api.urls")),
 ]
 
