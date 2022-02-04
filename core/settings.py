@@ -239,6 +239,7 @@ csp_list = [
     "'unsafe-eval'",
     "'unsafe-inline'",
     "https://unpkg.com/htmx.org@1.1.0",
+    "https://cdn.tailwindcss.com/",
 ]
 
 CSP_DEFAULT_SRC = csp_list

@@ -4,17 +4,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-        <link href="{% static "css/styles.css" %}" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
         <title>
-            
                 {{ pages.slug }}
-            
         </title>
-        <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
     </head>
+    {% include '_navigation.html' %}
     <body class="m-10">
-        {% include "_navigation.html" %}
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
