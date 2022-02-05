@@ -130,3 +130,5 @@ dmypy.json
 
 # ignore .idea
 .idea
+
+acronyms.json

@@ -11,6 +11,7 @@ class Acronym(models.Model):
 
     class Meta:
         unique_together = ("acronym", "definition")
+        ordering = ["acronym"]
 
     def __str__(self) -> str:
         return self.acronym
