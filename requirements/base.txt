@@ -17,5 +17,5 @@ python-docx-1==0.0.2
 django-csp==3.7
 django-feature-policy==4.0.0
 requests==2.27.1
-django-permissions-policy==4.5.0
+django-permissions-policy==4.7.0
 slackclient==2.9.3
