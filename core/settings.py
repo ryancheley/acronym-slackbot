@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS: list[str] = env("ALLOWED_HOSTS")
+ALLOWED_HOSTS: list[str] = ["*"]  # env("ALLOWED_HOSTS")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -267,3 +267,7 @@ PERMISSIONS_POLICY = {
 }
 
 DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
+
+
+SLACK_VERIFICATION_TOKEN = env("SLACK_VERIFICATION_TOKEN")
+SLACK_BOT_USER_TOKEN = env("SLACK_BOT_USER_TOKEN")

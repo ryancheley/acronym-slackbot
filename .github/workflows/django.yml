@@ -30,6 +30,8 @@ jobs:
         touch core/.env
         echo DEBUG=off >> core/.env
         echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> core/.env
+        echo SLACK_VERIFICATION_TOKEN=1 >> core/.env
+        echo SLACK_BOT_USER_TOKEN=1  >> core/.env
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
