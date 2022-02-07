@@ -11,7 +11,7 @@ django-storages==1.12.3
 django-weasyprint==2.1.0
 markdown2==2.4.1
 django-money==2.1
-docutils==0.18
+docutils==0.18.1
 PyPDF2==1.26.0
 python-docx-1==0.0.2
 django-csp==3.7
