@@ -66,7 +66,7 @@ class Events(APIView):
             else:
                 confluence_link = CONFLUENCE_LINK + f'/dosearchsite.action?cql=siteSearch+~+"{text}"'
                 message = f"I'm sorry <@{user}> I don't know what *{text.upper()}* is :shrug:. \
-                    Try checking <Confluence|{confluence_link}>"
+                    Try checking <{confluence_link}|Confluence>"
 
             if user != "U031T0UHLH1":
                 client.chat_postMessage(
