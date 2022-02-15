@@ -62,14 +62,15 @@ class Events(APIView):
             response = requests.get(url).json()
             definition = response.get("definition")
             if definition:
-                message = f"The acronym '{text}' means: {definition}"
+                message = f"The acronym '{text.upper()}' means: {definition}"
             else:
-                confluence_link = CONFLUENCE_LINK + f'/dosearchsite.action?cql=siteSearch+~+"{text}"'
-                message = (
-                    f"I'm sorry <@{user}> I don't know what **{text}** is :shrug:. Try checking [Confluence]({confluence_link})"
-                )
+                confluence = CONFLUENCE_LINK + f'/dosearchsite.action?cql=siteSearch+~+"{text}"'
+                confluence_link = f"<{confluence}|Confluence>"
+                message = f"I'm sorry <@{user}> I don't know what *{text.upper()}* is :shrug:. Try checking {confluence_link}."
 
             if user != "U031T0UHLH1":
-                client.chat_postMessage(blocks=[{"text": {"type": "plain_text", "text": message}}], channel=channel)
+                client.chat_postMessage(
+                    blocks=[{"type": "section", "text": {"type": "mrkdwn", "text": message}}], channel=channel
+                )
                 return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_200_OK)
