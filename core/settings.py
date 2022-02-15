@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     # Local
     "core",
     "acronyms",
+    "api",
 ]
 
 X_FRAME_OPTIONS = "DENY"
@@ -271,3 +272,5 @@ DEFAULT_AUTO_FIELD = "django.db.models.AutoField"
 
 SLACK_VERIFICATION_TOKEN = env("SLACK_VERIFICATION_TOKEN")
 SLACK_BOT_USER_TOKEN = env("SLACK_BOT_USER_TOKEN")
+
+CONFLUENCE_LINK = env("CONFLUENCE_LINK")
