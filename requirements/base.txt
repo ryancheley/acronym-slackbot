@@ -9,7 +9,7 @@ gunicorn==20.1.0
 boto3==1.19.12
 django-storages==1.12.3
 django-weasyprint==2.1.0
-markdown2==2.4.1
+markdown2==2.4.2
 django-money==2.1.1
 docutils==0.18.1
 PyPDF2==1.26.0
