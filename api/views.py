@@ -70,6 +70,8 @@ class Events(APIView):
                 )
 
             if user != "U031T0UHLH1":
-                client.chat_postMessage(blocks=[{"text": {"type": "plain_text", "text": message}}], channel=channel)
+                client.chat_postMessage(
+                    blocks=[{"type": "section", "text": {"type": "mrkdwn", "text": message}}], channel=channel
+                )
                 return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_200_OK)
