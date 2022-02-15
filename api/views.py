@@ -17,7 +17,8 @@ ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
 SLACK_VERIFICATION_TOKEN = getattr(settings, "SLACK_VERIFICATION_TOKEN", None)
-SLACK_BOT_USER_TOKEN = getattr(settings, "SLACK_BOT_USER_TOKEN", None)  #
+SLACK_BOT_USER_TOKEN = getattr(settings, "SLACK_BOT_USER_TOKEN", None)
+CONFLUENCE_LINK = getattr(settings, "CONFLUENCE_LINK", None)
 client = slack.WebClient(SLACK_BOT_USER_TOKEN, ssl=ssl_context)
 
 
@@ -63,9 +64,12 @@ class Events(APIView):
             if definition:
                 message = f"The acronym '{text}' means: {definition}"
             else:
-                message = f"I'm sorry <@{user}> I don't know what {text} is :shrug:"
+                confluence_link = CONFLUENCE_LINK + f'/dosearchsite.action?cql=siteSearch+~+"{text}"'
+                message = (
+                    f"I'm sorry <@{user}> I don't know what **{text}** is :shrug:. Try checking [Confluence]({confluence_link})"
+                )
 
             if user != "U031T0UHLH1":
-                client.chat_postMessage(text=message, channel=channel)
+                client.chat_postMessage(blocks=[{"text": {"type": "plain_text", "text": message}}], channel=channel)
                 return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_200_OK)

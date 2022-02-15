@@ -11,11 +11,11 @@ django-storages==1.12.3
 django-weasyprint==2.1.0
 markdown2==2.4.1
 django-money==2.1
-docutils==0.18
+docutils==0.18.1
 PyPDF2==1.26.0
 python-docx-1==0.0.2
 django-csp==3.7
 django-feature-policy==4.0.0
-requests==2.26.0
+requests==2.27.1
 django-permissions-policy==4.7.0
 slackclient==2.9.3
