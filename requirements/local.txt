@@ -18,4 +18,4 @@ pytest-randomly==3.11.0
 pytest-xdist==2.5.0
 pyparsing==3.0.7
 pretty-errors==1.2.25
-tryceratops==0.6.0
+tryceratops==1.0.1
