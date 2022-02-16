@@ -25,7 +25,7 @@ client = slack.WebClient(SLACK_BOT_USER_TOKEN, ssl=ssl_context)
 
 class AcronymViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = AcronymSerializer
-    queryset = Acronym.objects.all()
+    queryset = Acronym.objects.filter(approved=True)
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())
