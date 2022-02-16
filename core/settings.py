@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     "django.contrib.admindocs",
     # Third Party App
-    "crispy_forms",
-    "crispy_tailwind",
     "rest_framework",
     # Local
     "core",
@@ -229,6 +227,7 @@ csp_list = [
     "https://use.fontawesome.com",
     "https://slackbot.ryancheley.com",
     "http://127.0.0.1:8000",
+    "https://a753-47-158-193-137.ngrok.io",
     "http://www.bohemiancoding.com",
     "http://www.w3.org",
     "'unsafe-eval'",

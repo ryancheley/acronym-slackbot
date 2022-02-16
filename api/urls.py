@@ -1,6 +1,6 @@
 from django.urls import include, path
 
-from .views import AcronymViewSet, Events
+from .views import AcronymViewSet, AddAcronym, CountAcronyms, Events
 
 app_name = "api"
 
@@ -11,5 +11,7 @@ urlpatterns = [
     path("", AcronymViewSet.as_view({"get": "list"}), name="acronym-list"),
     path("<acronym>/", AcronymViewSet.as_view({"get": "retrieve"}), name="acronym-detail"),
     path("slack/events/", Events.as_view(), name="events"),
+    path("slack/count/", CountAcronyms.as_view(), name="count-acronyms"),
+    path("slack/add/", AddAcronym.as_view(), name="add-acronym"),
     path("api-auth/", include("rest_framework.urls", namespace="rest_framework")),
 ]
