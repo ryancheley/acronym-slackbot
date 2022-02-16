@@ -70,6 +70,7 @@ class AddAcronym(APIView):
                 acronym=acronym,
                 definition=definition,
                 create_by=user,
+                approved=False,
             )
             record.save()
             return Response(status=status.HTTP_201_CREATED)
