@@ -30,7 +30,7 @@ jobs:
 
             cp /home/slackbot/.env /home/slackbot/core/core/.env
 
-            pip -q install -r /home/slackbot/core/requirements/production.txt
+            pip -q install -r /home/slackbot/core/requirements.txt
 
             python /home/slackbot/core/manage.py migrate
 
