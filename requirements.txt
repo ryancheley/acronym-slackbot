@@ -49,7 +49,7 @@ django-admin-interface==0.18.6
     # via -r requirements.in
 django-colorfield==0.6.3
     # via django-admin-interface
-django-coverage-plugin==2.0.1
+django-coverage-plugin==2.0.2
     # via -r requirements.in
 django-csp==3.7
     # via -r requirements.in
@@ -69,7 +69,7 @@ django-permissions-policy==4.7.0
     # via -r requirements.in
 djangorestframework==3.13.1
     # via -r requirements.in
-djhtml==1.4.9
+djhtml==1.5.0
     # via -r requirements.in
 execnet==1.9.0
     # via pytest-xdist
@@ -131,7 +131,7 @@ pyflakes==2.4.0
     # via flake8
 pyparsing==3.0.7
     # via packaging
-pytest==6.2.5
+pytest==7.0.1
     # via
     #   -r requirements.in
     #   pytest-cov
@@ -167,14 +167,13 @@ sqlparse==0.4.2
     #   django
     #   django-debug-toolbar
 toml==0.10.2
-    # via
-    #   pre-commit
-    #   pytest
+    # via pre-commit
 tomli==2.0.1
     # via
     #   black
     #   coverage
     #   pep517
+    #   pytest
 typing-extensions==4.1.1
     # via black
 urllib3==1.26.8
