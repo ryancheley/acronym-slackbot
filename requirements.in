@@ -1,7 +1,7 @@
 black==22.1.0
 Django==4.0.2
 djangorestframework==3.13.1
-django-admin-interface==0.18.6
+django-admin-interface==0.18.7
 django-coverage-plugin==2.0.2
 django-csp==3.7
 django-debug-toolbar==3.2.4
