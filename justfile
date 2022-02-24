@@ -1,6 +1,6 @@
 # run tests via pytest, creates coverage report, and then opens it up
 test:
-    coverage run -m pytest
+    coverage run -m pytest --cov-report html
     open htmlcov/index.html
 
 # deploys the code to the `target` server, which can be either an IP Address or alias to an IP

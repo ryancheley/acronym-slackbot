@@ -1,10 +1,5 @@
 [run]
 omit=
-    */venv/*
-    */htmlcov/*
-    *migrations*
-    manage.py
-    core/urls.py
     core/settings.py
 
 [report]
