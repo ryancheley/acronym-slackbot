@@ -1,12 +1,3 @@
-[run]
-omit=
-    */venv/*
-    */htmlcov/*
-    *migrations*
-    manage.py
-    core/urls.py
-    core/settings.py
-
 [report]
 fail_under = 99
 show_missing = True
