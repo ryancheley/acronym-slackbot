@@ -89,8 +89,6 @@ idna==3.3
     # via
     #   requests
     #   yarl
-importlib-metadata==4.11.1
-    # via pytest-randomly
 iniconfig==1.1.1
     # via pytest
 mccabe==0.6.1
@@ -147,7 +145,7 @@ pytest-forked==1.4.0
     # via pytest-xdist
 pytest-randomly==3.11.0
     # via -r requirements.in
-pytest-xdist==2.4.0
+pytest-xdist==2.5.0
     # via -r requirements.in
 pytz==2021.3
     # via djangorestframework
@@ -174,8 +172,6 @@ tomli==2.0.1
     #   coverage
     #   pep517
     #   pytest
-typing-extensions==4.1.1
-    # via black
 urllib3==1.26.8
     # via requests
 virtualenv==20.13.1
@@ -184,8 +180,6 @@ wheel==0.37.1
     # via pip-tools
 yarl==1.7.2
     # via aiohttp
-zipp==3.7.0
-    # via importlib-metadata
 
 # The following packages are considered to be unsafe in a requirements file:
 # pip
