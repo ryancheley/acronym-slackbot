@@ -42,7 +42,7 @@ check:
 # pulls from branch
 sync branch:
     git switch {{branch}}
-    git pull github {{branch}}
+    git pull origin {{branch}}
 
 # applies linting to project (black, djhtml, flake8)
 lint:

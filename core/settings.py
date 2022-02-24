@@ -29,7 +29,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DEBUG")
 
-ALLOWED_HOSTS: list[str] = ["*"]  # env("ALLOWED_HOSTS")
+ALLOWED_HOSTS: list[str] = env("ALLOWED_HOSTS")
 
 INTERNAL_IPS = [
     "127.0.0.1",
@@ -50,8 +50,6 @@ INSTALLED_APPS = [
     "django.contrib.flatpages",
     "django.contrib.admindocs",
     # Third Party App
-    "crispy_forms",
-    "crispy_tailwind",
     "rest_framework",
     # Local
     "core",
@@ -229,6 +227,7 @@ csp_list = [
     "https://use.fontawesome.com",
     "https://slackbot.ryancheley.com",
     "http://127.0.0.1:8000",
+    "https://a753-47-158-193-137.ngrok.io",
     "http://www.bohemiancoding.com",
     "http://www.w3.org",
     "'unsafe-eval'",
