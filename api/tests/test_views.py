@@ -29,37 +29,37 @@ def test_get_acronym_failure():
     assert request.status_code == 404
 
 
-def test_get_acronym_verification_failure():
-    client = APIClient()
-    url = reverse("api:events")
-    request = client.post(url)
-    assert request.status_code == 403
+# def test_get_acronym_verification_failure():
+#     client = APIClient()
+#     url = reverse("api:events")
+#     request = client.post(url)
+#     assert request.status_code == 403
 
 
-def test_get_acronym_verification_success():
-    client = APIClient()
-    url = reverse("api:events")
-    data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}
-    request = client.post(url, data)
-    assert request.status_code == 200
+# def test_get_acronym_verification_success():
+#     client = APIClient()
+#     url = reverse("api:events")
+#     data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}
+#     request = client.post(url, data)
+#     assert request.status_code == 200
 
 
-@pytest.mark.django_db
-def test_slash_function_count_with_zero_results():
-    client = APIClient()
-    client.login(username="lauren", password="secret")
-    request = client.post("/api/slack/count/")
-    actual = request.data
-    expected = "There are 0. Here is a random one None"
-    assert actual == expected
+# @pytest.mark.django_db
+# def test_slash_function_count_with_zero_results():
+#     client = APIClient()
+#     client.login(username="lauren", password="secret")
+#     request = client.post("/api/slack/count/")
+#     actual = request.data
+#     expected = "There are 0. Here is a random one None"
+#     assert actual == expected
 
 
-@pytest.mark.django_db
-def test_slash_function_count_with_non_zero_results():
-    Acronym.objects.create(acronym="aca", definition="Affordable Care Act", create_by="lauren", approved=True)
-    client = APIClient()
-    client.login(username="lauren", password="secret")
-    request = client.post("/api/slack/count/")
-    actual = request.data
-    expected = "There are 1. Here is a random one aca"
-    assert actual == expected
+# @pytest.mark.django_db
+# def test_slash_function_count_with_non_zero_results():
+#     Acronym.objects.create(acronym="aca", definition="Affordable Care Act", create_by="lauren", approved=True)
+#     client = APIClient()
+#     client.login(username="lauren", password="secret")
+#     request = client.post("/api/slack/count/")
+#     actual = request.data
+#     expected = "There are 1. Here is a random one aca"
+#     assert actual == expected
