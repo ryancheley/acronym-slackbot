@@ -36,7 +36,7 @@ def test_get_acronym_verification_failure():
 def test_get_acronym_verification_success():
     client = APIClient()
     url = reverse("api:events")
-    data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}
+    data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification", "user": "ryan"}
     request = client.post(url, data)
     assert request.status_code == 200
 
