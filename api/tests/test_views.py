@@ -1,9 +1,10 @@
 import pytest
 from django.conf import settings
 from django.urls import reverse
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient, APIRequestFactory
 
 from acronyms.models import Acronym
+from api.views import AcronymViewSet
 
 SLACK_VERIFICATION_TOKEN = getattr(settings, "SLACK_VERIFICATION_TOKEN", None)
 
@@ -12,9 +13,11 @@ SLACK_VERIFICATION_TOKEN = getattr(settings, "SLACK_VERIFICATION_TOKEN", None)
 def test_get_acronym_success():
     Acronym.objects.create(acronym="aca", definition="Affordable Care Act", create_by="lauren", approved=True)
     url = reverse("api:acronym-detail", kwargs={"acronym": "aca"})
-    client = APIClient()
-    request = client.get(url)
-    assert request.status_code == 200
+    factory = APIRequestFactory()
+    view = view = AcronymViewSet.as_view({"get": "retrieve"})
+    request = factory.get(url)
+    response = view(request, acronym="aca")
+    assert response.status_code == 200
 
 
 @pytest.mark.django_db
@@ -36,7 +39,7 @@ def test_get_acronym_verification_failure():
 def test_get_acronym_verification_success():
     client = APIClient()
     url = reverse("api:events")
-    data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification", "user": "ryan"}
+    data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}
     request = client.post(url, data)
     assert request.status_code == 200
 
