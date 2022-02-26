@@ -133,3 +133,7 @@ dmypy.json
 
 acronyms.json
 static
+
+# macOS stuff
+
+.DS_Store
