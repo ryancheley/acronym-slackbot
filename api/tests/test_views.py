@@ -4,44 +4,51 @@ from django.urls import reverse
 from rest_framework.test import APIClient, APIRequestFactory
 
 from acronyms.models import Acronym
-from api.views import AcronymViewSet
+from api.views import AcronymViewSet, Events
 
 SLACK_VERIFICATION_TOKEN = getattr(settings, "SLACK_VERIFICATION_TOKEN", None)
 
 
 @pytest.mark.django_db
-def test_get_acronym_success():
+@pytest.mark.parametrize(
+    "acronym, expected",
+    [
+        ("aca", 200),
+        ("ftf", 404),
+    ],
+)
+def test_get_acronym(acronym, expected):
     Acronym.objects.create(acronym="aca", definition="Affordable Care Act", create_by="lauren", approved=True)
-    url = reverse("api:acronym-detail", kwargs={"acronym": "aca"})
+    url = reverse("api:acronym-detail", kwargs={"acronym": acronym})
     factory = APIRequestFactory()
-    view = view = AcronymViewSet.as_view({"get": "retrieve"})
+    view = AcronymViewSet.as_view({"get": "retrieve"})
     request = factory.get(url)
-    response = view(request, acronym="aca")
-    assert response.status_code == 200
+    response = view(request, acronym=acronym)
+    assert response.status_code == expected
 
 
-@pytest.mark.django_db
-def test_get_acronym_failure():
-    Acronym.objects.create(acronym="aca", definition="Affordable Care Act", create_by="lauren", approved=True)
-    url = reverse("api:acronym-detail", kwargs={"acronym": "ftf"})
-    client = APIClient()
-    request = client.get(url)
-    assert request.status_code == 404
+@pytest.mark.parametrize(
+    "data, expected",
+    [
+        ({"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}, 200),
+        (None, 403),
+    ],
+)
+def test_get_acronym_verification(data, expected):
+    url = reverse("api:events")
+    factory = APIRequestFactory()
+    view = Events.as_view()
+    request = factory.post(url, data=data)
+    response = view(request)
+    assert response.status_code == expected
 
 
-# def test_get_acronym_verification_failure():
-#     client = APIClient()
-#     url = reverse("api:events")
-#     request = client.post(url)
-#     assert request.status_code == 403
-
-
-# def test_get_acronym_verification_success():
-#     client = APIClient()
-#     url = reverse("api:events")
-#     data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}
-#     request = client.post(url, data)
-#     assert request.status_code == 200
+def test_get_acronym_verification_success():
+    client = APIClient(follow=True)
+    url = reverse("api:events")
+    data = {"token": SLACK_VERIFICATION_TOKEN, "type": "url_verification"}
+    request = client.post(url, data)
+    assert request.status_code == 200
 
 
 # @pytest.mark.django_db
