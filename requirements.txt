@@ -45,7 +45,7 @@ django==4.0.2
     #   django-nplusone
     #   django-permissions-policy
     #   djangorestframework
-django-admin-interface==0.18.6
+django-admin-interface==0.18.7
     # via -r requirements.in
 django-colorfield==0.6.3
     # via django-admin-interface
@@ -65,7 +65,7 @@ django-flat-theme==1.1.4
     # via django-admin-interface
 django-nplusone==0.0.5
     # via -r requirements.in
-django-permissions-policy==4.7.0
+django-permissions-policy==4.8.0
     # via -r requirements.in
 djangorestframework==3.13.1
     # via -r requirements.in
@@ -119,7 +119,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==2.15.0
+pre-commit==2.17.0
     # via -r requirements.in
 py==1.11.0
     # via
@@ -141,13 +141,13 @@ pytest==7.0.1
     #   pytest-xdist
 pytest-cov==3.0.0
     # via -r requirements.in
-pytest-django==4.4.0
+pytest-django==4.5.2
     # via -r requirements.in
 pytest-forked==1.4.0
     # via pytest-xdist
 pytest-randomly==3.11.0
     # via -r requirements.in
-pytest-xdist==2.4.0
+pytest-xdist==2.5.0
     # via -r requirements.in
 pytz==2021.3
     # via djangorestframework
