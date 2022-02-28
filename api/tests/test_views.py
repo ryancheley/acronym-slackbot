@@ -15,10 +15,12 @@ SLACK_VERIFICATION_TOKEN = getattr(settings, "SLACK_VERIFICATION_TOKEN", None)
     [
         ("aca", 200),
         ("ftf", 404),
+        ("ftq", 404),
     ],
 )
 def test_get_acronym(acronym, expected):
     Acronym.objects.create(acronym="aca", definition="Affordable Care Act", create_by="lauren", approved=True)
+    Acronym.objects.create(acronym="ftf", definition="Face to Face", create_by="lauren", approved=False)
     url = reverse("api:acronym-detail", kwargs={"acronym": acronym})
     factory = APIRequestFactory()
     view = AcronymViewSet.as_view({"get": "retrieve"})

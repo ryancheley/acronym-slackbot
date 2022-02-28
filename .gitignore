@@ -135,6 +135,6 @@ acronyms.json
 static
 staticfiles
 
-# macOS stuff
+__pycache__
 
 .DS_Store
