@@ -134,3 +134,7 @@ dmypy.json
 acronyms.json
 static
 staticfiles
+
+__pycache__
+
+.DS_Store

@@ -2,6 +2,7 @@
 omit=
     core/settings.py
     core/urls.py
+    *migrations*
 
 [report]
 fail_under = 100
