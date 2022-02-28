@@ -36,6 +36,8 @@ jobs:
 
             mkdir /home/slackbot/core/static
 
+            mkdir /home/slackbot/core/staticfiles
+
             python /home/slackbot/core/manage.py collectstatic --noinput -v0
 
             systemctl daemon-reload
