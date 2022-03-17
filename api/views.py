@@ -44,7 +44,6 @@ class CountAcronyms(APIView):
 
 class AddAcronym(APIView):
     def post(self, request, *args, **kwargs):  # pragma: no cover
-        print(request.data["text"])
         request_data = request.data["text"]
         channel = request.data["channel_id"]
         message, response_status = format_checker(request_data)
