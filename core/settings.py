@@ -183,11 +183,21 @@ LOGGING = {
             "class": "django.utils.log.AdminEmailHandler",
             "include_html": True,
         },
+        "file": {
+            "level": "ERROR",
+            "class": "logging.FileHandler",
+            "filename": "debug.log",
+        },
     },
     "loggers": {
         "django.security.DisallowedHost": {
             "handlers": ["null"],
             "propagate": False,
+        },
+        "django": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": True,
         },
     },
 }
