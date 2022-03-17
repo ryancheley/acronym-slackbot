@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from acronyms.models import Acronym
 
 from .serializers import AcronymSerializer
-from .utils import format_checker, process_user_message, string_split
+from .utils import format_checker, process_user_message
 
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
@@ -28,7 +28,6 @@ class AcronymViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_object(self):
         queryset = self.filter_queryset(self.get_queryset())
-        print(self.kwargs["acronym"])
         acronym = self.kwargs["acronym"]
         obj = get_object_or_404(queryset, acronym__iexact=acronym)
 
@@ -45,7 +44,8 @@ class CountAcronyms(APIView):
 
 class AddAcronym(APIView):
     def post(self, request, *args, **kwargs):  # pragma: no cover
-        request_data = string_split(request.data["text"])
+        print(request.data["text"])
+        request_data = request.data["text"]
         channel = request.data["channel_id"]
         message, response_status = format_checker(request_data)
         blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
@@ -66,7 +66,6 @@ class Events(APIView):
         # greet bot
         if "event" in slack_message:
             event_message = slack_message.get("event")
-            print(event_message)
 
             # ignore bot's own message
             if event_message.get("subtype"):
