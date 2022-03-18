@@ -1,4 +1,5 @@
 import ssl
+from datetime import datetime
 
 import slack
 from django.conf import settings
@@ -10,7 +11,7 @@ from rest_framework.views import APIView
 from acronyms.models import Acronym
 
 from .serializers import AcronymSerializer
-from .utils import format_checker, process_user_message
+from .utils import format_checker, process_user_message, string_split
 
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
@@ -49,6 +50,13 @@ class AddAcronym(APIView):
         message, response_status = format_checker(request_data)
         blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
         client.chat_postMessage(blocks=blocks, channel=channel)
+        if response_status == status.HTTP_201_CREATED:
+            acronym, definition = string_split(request_data)
+            user = request.data["user_name"]
+            record = Acronym.objects.create(
+                acronym=acronym, definition=definition, create_by=user, create_date=datetime.now(), approved=False
+            )
+            record.save()
         return Response(status=response_status)
 
 
