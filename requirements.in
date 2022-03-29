@@ -1,4 +1,4 @@
-black==22.1.0
+black==22.3.0
 Django==4.0.3
 djangorestframework==3.13.1
 django-admin-interface==0.19.0
