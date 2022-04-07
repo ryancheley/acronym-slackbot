@@ -109,7 +109,7 @@ pep517==0.12.0
     # via pip-tools
 pillow==9.0.1
     # via django-colorfield
-pip-tools==6.5.1
+pip-tools==6.6.0
     # via -r requirements.in
 platformdirs==2.5.0
     # via
