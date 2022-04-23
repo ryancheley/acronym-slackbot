@@ -186,7 +186,7 @@ LOGGING = {
         "file": {
             "level": "ERROR",
             "class": "logging.FileHandler",
-            "filename": "debug.log",
+            "filename": Path(BASE_DIR.parent / "debug.log"),
         },
     },
     "loggers": {
