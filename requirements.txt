@@ -16,7 +16,7 @@ attrs==21.4.0
     # via
     #   aiohttp
     #   pytest
-black==22.1.0
+black==22.3.0
     # via -r requirements.in
 certifi==2021.10.8
     # via requests
@@ -36,7 +36,7 @@ coverage[toml]==6.3.1
     #   pytest-cov
 distlib==0.3.4
     # via virtualenv
-django==4.0.3
+django==4.0.4
     # via
     #   -r requirements.in
     #   django-csp
@@ -65,7 +65,7 @@ django-flat-theme==1.1.4
     # via django-admin-interface
 django-nplusone==0.0.5
     # via -r requirements.in
-django-permissions-policy==4.8.0
+django-permissions-policy==4.9.0
     # via -r requirements.in
 djangorestframework==3.13.1
     # via -r requirements.in
@@ -109,7 +109,7 @@ pep517==0.12.0
     # via pip-tools
 pillow==9.0.1
     # via django-colorfield
-pip-tools==6.5.1
+pip-tools==6.6.0
     # via -r requirements.in
 platformdirs==2.5.0
     # via
@@ -117,7 +117,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==2.17.0
+pre-commit==2.18.1
     # via -r requirements.in
 py==1.11.0
     # via
@@ -129,7 +129,7 @@ pyflakes==2.4.0
     # via flake8
 pyparsing==3.0.7
     # via packaging
-pytest==7.0.1
+pytest==7.1.2
     # via
     #   -r requirements.in
     #   pytest-cov
