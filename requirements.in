@@ -20,4 +20,4 @@ pytest-django==4.5.2
 pytest-randomly==3.11.0
 pytest-xdist==2.5.0
 requests==2.27.1
-slackclient==2.9.3
+slackclient==2.9.4

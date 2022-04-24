@@ -158,7 +158,7 @@ six==1.16.0
     #   django-admin-interface
     #   django-coverage-plugin
     #   virtualenv
-slackclient==2.9.3
+slackclient==2.9.4
     # via -r requirements.in
 sqlparse==0.4.2
     # via
