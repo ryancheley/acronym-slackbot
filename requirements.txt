@@ -143,7 +143,7 @@ pytest-django==4.5.2
     # via -r requirements.in
 pytest-forked==1.4.0
     # via pytest-xdist
-pytest-randomly==3.11.0
+pytest-randomly==3.12.0
     # via -r requirements.in
 pytest-xdist==2.5.0
     # via -r requirements.in
