@@ -45,7 +45,7 @@ django==4.0.4
     #   django-nplusone
     #   django-permissions-policy
     #   djangorestframework
-django-admin-interface==0.19.0
+django-admin-interface==0.19.1
     # via -r requirements.in
 django-colorfield==0.6.3
     # via django-admin-interface
