@@ -16,7 +16,7 @@ attrs==21.4.0
     # via
     #   aiohttp
     #   pytest
-black==22.3.0
+black==22.6.0
     # via -r requirements.in
 certifi==2021.10.8
     # via requests
@@ -57,7 +57,7 @@ django-debug-toolbar==3.4.0
     # via -r requirements.in
 django-environ==0.8.1
     # via -r requirements.in
-django-extensions==3.1.5
+django-extensions==3.2.0
     # via -r requirements.in
 django-flat-responsive==2.0
     # via django-admin-interface
@@ -117,7 +117,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==2.19.0
+pre-commit==2.20.0
     # via -r requirements.in
 py==1.11.0
     # via
@@ -151,7 +151,7 @@ pytz==2021.3
     # via djangorestframework
 pyyaml==6.0
     # via pre-commit
-requests==2.27.1
+requests==2.28.1
     # via -r requirements.in
 six==1.16.0
     # via
