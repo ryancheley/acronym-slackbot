@@ -57,7 +57,7 @@ django-debug-toolbar==3.4.0
     # via -r requirements.in
 django-environ==0.8.1
     # via -r requirements.in
-django-extensions==3.1.5
+django-extensions==3.2.0
     # via -r requirements.in
 django-flat-responsive==2.0
     # via django-admin-interface
