@@ -35,3 +35,23 @@ To run this project, you will need to add the following environment variables to
 `CSRF_COOKIE_SECURE`
 
 `ALLOWED_HOSTS`
+
+## Development
+
+Development is done locally by creating a feature branch
+
+```
+git switch -c feature_branch_name
+```
+
+Once local development is ready to be moved to Prod you will push the feature branch to github
+
+```
+git push origin feature_branch_name
+```
+
+This will push to GitHub and run the GitHub Action `django.yml` which will run tests.
+
+## Deployment
+
+In order to deploy to `prod` you will need to perform a Pull Request to `main` and Merge on GitHub
