@@ -16,7 +16,7 @@ attrs==21.4.0
     # via
     #   aiohttp
     #   pytest
-black==22.6.0
+black==22.8.0
     # via -r requirements.in
 certifi==2021.10.8
     # via requests
