@@ -73,8 +73,6 @@ djangorestframework==3.14.0
     # via -r requirements.in
 djhtml==1.5.0
     # via -r requirements.in
-exceptiongroup==1.0.0rc9
-    # via pytest
 execnet==1.9.0
     # via pytest-xdist
 filelock==3.5.0
@@ -115,7 +113,7 @@ pep517==0.12.0
     # via build
 pillow==9.0.1
     # via django-colorfield
-pip-tools==6.9.0
+pip-tools==6.10.0
     # via -r requirements.in
 platformdirs==2.5.0
     # via
@@ -167,11 +165,8 @@ toml==0.10.2
     # via pre-commit
 tomli==2.0.1
     # via
-    #   black
-    #   build
     #   coverage
     #   pep517
-    #   pytest
 urllib3==1.26.8
     # via requests
 virtualenv==20.13.1
