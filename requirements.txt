@@ -121,7 +121,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==2.20.0
+pre-commit==2.21.0
     # via -r requirements.in
 pycodestyle==2.8.0
     # via flake8
@@ -161,8 +161,6 @@ sqlparse==0.4.2
     # via
     #   django
     #   django-debug-toolbar
-toml==0.10.2
-    # via pre-commit
 tomli==2.0.1
     # via
     #   coverage
