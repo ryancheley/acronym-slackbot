@@ -8,7 +8,7 @@ aiohttp==3.8.1
     # via slackclient
 aiosignal==1.2.0
     # via aiohttp
-asgiref==3.5.0
+asgiref==3.6.0
     # via django
 async-timeout==4.0.2
     # via aiohttp
@@ -38,7 +38,7 @@ coverage[toml]==6.3.1
     #   pytest-cov
 distlib==0.3.4
     # via virtualenv
-django==4.0.8
+django==4.1.5
     # via
     #   -r requirements.in
     #   django-csp
