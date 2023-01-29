@@ -8,7 +8,7 @@ aiohttp==3.8.1
     # via slackclient
 aiosignal==1.2.0
     # via aiohttp
-asgiref==3.5.0
+asgiref==3.6.0
     # via django
 async-timeout==4.0.2
     # via aiohttp
@@ -16,8 +16,10 @@ attrs==21.4.0
     # via
     #   aiohttp
     #   pytest
-black==22.6.0
+black==22.12.0
     # via -r requirements.in
+build==0.8.0
+    # via pip-tools
 certifi==2021.10.8
     # via requests
 cfgv==3.3.1
@@ -36,7 +38,7 @@ coverage[toml]==6.3.1
     #   pytest-cov
 distlib==0.3.4
     # via virtualenv
-django==4.0.7
+django==4.1.5
     # via
     #   -r requirements.in
     #   django-csp
@@ -45,29 +47,25 @@ django==4.0.7
     #   django-nplusone
     #   django-permissions-policy
     #   djangorestframework
-django-admin-interface==0.19.1
+django-admin-interface==0.24.2
     # via -r requirements.in
-django-colorfield==0.6.3
+django-colorfield==0.8.0
     # via django-admin-interface
-django-coverage-plugin==2.0.3
+django-coverage-plugin==3.0.0
     # via -r requirements.in
 django-csp==3.7
     # via -r requirements.in
-django-debug-toolbar==3.4.0
+django-debug-toolbar==3.8.1
     # via -r requirements.in
 django-environ==0.8.1
     # via -r requirements.in
-django-extensions==3.2.0
+django-extensions==3.2.1
     # via -r requirements.in
-django-flat-responsive==2.0
-    # via django-admin-interface
-django-flat-theme==1.1.4
-    # via django-admin-interface
 django-nplusone==0.0.5
     # via -r requirements.in
 django-permissions-policy==4.9.0
     # via -r requirements.in
-djangorestframework==3.13.1
+djangorestframework==3.14.0
     # via -r requirements.in
 djhtml==1.5.0
     # via -r requirements.in
@@ -102,14 +100,16 @@ mypy-extensions==0.4.3
 nodeenv==1.6.0
     # via pre-commit
 packaging==21.3
-    # via pytest
+    # via
+    #   build
+    #   pytest
 pathspec==0.9.0
     # via black
 pep517==0.12.0
-    # via pip-tools
+    # via build
 pillow==9.0.1
     # via django-colorfield
-pip-tools==6.6.2
+pip-tools==6.12.1
     # via -r requirements.in
 platformdirs==2.5.0
     # via
@@ -117,7 +117,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==2.20.0
+pre-commit==3.0.1
     # via -r requirements.in
 psycopg2==2.9.5
     # via -r requirements.in
@@ -131,49 +131,39 @@ pyflakes==2.4.0
     # via flake8
 pyparsing==3.0.7
     # via packaging
-pytest==7.1.2
+pytest==7.2.1
     # via
     #   -r requirements.in
     #   pytest-cov
     #   pytest-django
-    #   pytest-forked
     #   pytest-randomly
     #   pytest-xdist
-pytest-cov==3.0.0
+pytest-cov==4.0.0
     # via -r requirements.in
 pytest-django==4.5.2
     # via -r requirements.in
-pytest-forked==1.4.0
-    # via pytest-xdist
 pytest-randomly==3.12.0
     # via -r requirements.in
-pytest-xdist==2.5.0
+pytest-xdist==3.1.0
     # via -r requirements.in
 pytz==2021.3
     # via djangorestframework
 pyyaml==6.0
     # via pre-commit
-requests==2.28.1
+requests==2.28.2
     # via -r requirements.in
 six==1.16.0
-    # via
-    #   django-admin-interface
-    #   django-coverage-plugin
-    #   virtualenv
+    # via virtualenv
 slackclient==2.9.4
     # via -r requirements.in
 sqlparse==0.4.2
     # via
     #   django
     #   django-debug-toolbar
-toml==0.10.2
-    # via pre-commit
 tomli==2.0.1
     # via
-    #   black
     #   coverage
     #   pep517
-    #   pytest
 urllib3==1.26.8
     # via requests
 virtualenv==20.13.1
