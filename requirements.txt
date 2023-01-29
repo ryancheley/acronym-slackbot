@@ -63,7 +63,7 @@ django-extensions==3.2.1
     # via -r requirements.in
 django-nplusone==0.0.5
     # via -r requirements.in
-django-permissions-policy==4.9.0
+django-permissions-policy==4.14.0
     # via -r requirements.in
 djangorestframework==3.14.0
     # via -r requirements.in
