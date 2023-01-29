@@ -21,3 +21,4 @@ pytest-randomly
 pytest-xdist
 requests
 slackclient
+psycopg2
