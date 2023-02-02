@@ -69,8 +69,6 @@ djangorestframework==3.14.0
     # via -r requirements.in
 djhtml==1.5.0
     # via -r requirements.in
-exceptiongroup==1.1.0
-    # via pytest
 execnet==1.9.0
     # via pytest-xdist
 filelock==3.5.0
@@ -119,7 +117,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==3.0.1
+pre-commit==3.0.3
     # via -r requirements.in
 psycopg2==2.9.5
     # via -r requirements.in
@@ -160,11 +158,8 @@ sqlparse==0.4.2
     #   django-debug-toolbar
 tomli==2.0.1
     # via
-    #   black
-    #   build
     #   coverage
     #   pep517
-    #   pytest
 urllib3==1.26.8
     # via requests
 virtualenv==20.13.1
