@@ -118,7 +118,7 @@ platformdirs==2.5.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==3.0.3
+pre-commit==3.0.4
     # via -r requirements.in
 psycopg2==2.9.5
     # via -r requirements.in
