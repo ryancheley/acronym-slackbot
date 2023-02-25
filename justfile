@@ -48,5 +48,5 @@ branch_name := `git branch --show-current`
 
 @pip:
     pip install -U pip
-    pip-compile --resolver=backtracking --generate-hashes --upgrade --output-file requirements.txt
+    pip-compile --resolver=backtracking --quiet --upgrade --output-file requirements.txt
     pip install -r requirements.txt
