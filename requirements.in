@@ -22,3 +22,5 @@ pytest-xdist
 requests
 slackclient
 psycopg2
+django-upgrade
+tryceratops
