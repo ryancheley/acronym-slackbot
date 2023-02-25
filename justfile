@@ -1,52 +1,52 @@
 # run tests via pytest, creates coverage report, and then opens it up
-test:
+@test:
     coverage run -m pytest --cov-report html
     open htmlcov/index.html
 
 # merge current branch with dev
 branch_name := `git branch --show-current`
-merge:
+@merge:
     echo "{{branch_name}}"
     git switch dev
     git merge "{{branch_name}}"
 
 # prunes remote branches from github
-prune:
+@prune:
     git remote prune github
 
 # removes all but main and dev local branch
-gitclean:
+@gitclean:
     git branch | grep -v "main" | grep -v "dev"| xargs git branch -D
 
 # runs mutation testing
-mutmut:
+@mutmut:
     echo 'This may take a while ... got do something nice for yourself'
     mutmut run
 
 # builds the styles.css into the static directory
-style-build:
+@style-build:
     npx tailwindcss-cli@latest build jstoolchain/css/tailwind.css -c jstoolchain/tailwind.config.js -o staticfiles/css/styles.css
 
 # checks the deployment for prod settings; will return error if the check doesn't pass
-check:
+@check:
     cp core/.env core/.env_staging
     cp core/.env_prod core/.env
     -python manage.py check --deploy
     cp core/.env_staging core/.env
 
 # pulls from branch
-sync branch:
+@sync branch:
     git switch {{branch}}
     git pull origin {{branch}}
 
 # applies linting to project (black, djhtml, flake8)
-lint:
+@lint:
     pre-commit run --all-files
 
-run:
+@run:
     python manage.py runserver
 
-pip:
+@pip:
     pip install -U pip
-    pip-compile --resolver=backtracking --generate-hashes --upgrade --output-file requirements.txt
+    pip-compile --resolver=backtracking --quiet --upgrade --output-file requirements.txt
     pip install -r requirements.txt
