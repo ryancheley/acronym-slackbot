@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("acronyms", "0004_acronym_create_by_acronym_create_date"),
     ]

@@ -62,7 +62,6 @@ class AddAcronym(APIView):
 
 class Events(APIView):
     def post(self, request, *args, **kwargs):  # pragma: no cover
-
         slack_message = request.data
         if slack_message.get("token") != SLACK_VERIFICATION_TOKEN:
             return Response(status=status.HTTP_403_FORBIDDEN)
