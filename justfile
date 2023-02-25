@@ -3,11 +3,6 @@ test:
     coverage run -m pytest --cov-report html
     open htmlcov/index.html
 
-# deploys the code to the `target` server, which can be either an IP Address or alias to an IP
-deploy target: test
-    echo 'Deploying to {{target}}...'
-    cd {{invocation_directory()}}/scripts; ./deploy.sh {{target}}
-
 # merge current branch with dev
 branch_name := `git branch --show-current`
 merge:
@@ -48,3 +43,10 @@ sync branch:
 lint:
     pre-commit run --all-files
 
+run:
+    python manage.py runserver
+
+pip:
+    pip install -U pip
+    pip-compile --resolver=backtracking --generate-hashes --upgrade --output-file requirements.txt
+    pip install -r requirements.txt
