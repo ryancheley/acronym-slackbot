@@ -72,8 +72,6 @@ djangorestframework==3.14.0
     # via -r requirements.in
 djhtml==3.0.2
     # via -r requirements.in
-exceptiongroup==1.1.0
-    # via pytest
 execnet==1.9.0
     # via pytest-xdist
 filelock==3.9.0
@@ -125,7 +123,7 @@ platformdirs==3.0.0
     #   virtualenv
 pluggy==1.0.0
     # via pytest
-pre-commit==3.1.0
+pre-commit==3.1.1
     # via -r requirements.in
 psycopg2==2.9.5
     # via -r requirements.in
@@ -170,13 +168,6 @@ tokenize-rt==5.0.0
     # via django-upgrade
 toml==0.10.2
     # via tryceratops
-tomli==2.0.1
-    # via
-    #   black
-    #   build
-    #   coverage
-    #   pyproject-hooks
-    #   pytest
 tryceratops==1.1.0
     # via -r requirements.in
 urllib3==1.26.14
