@@ -70,7 +70,7 @@ django-upgrade==1.13.0
     # via -r requirements.in
 djangorestframework==3.14.0
     # via -r requirements.in
-djhtml==3.0.2
+djhtml==3.0.5
     # via -r requirements.in
 execnet==1.9.0
     # via pytest-xdist
