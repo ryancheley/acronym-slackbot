@@ -8,10 +8,10 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:12.2
+        image: postgres:14.7
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -22,10 +22,10 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
     - uses: actions/checkout@v1
-    - name: Set up Python 3.9
+    - name: Set up Python 3.10
       uses: actions/setup-python@v1
       with:
-        python-version: 3.9
+        python-version: 3.10.11
     - uses: actions/cache@v1
       with:
         path: ~/.cache/pip
@@ -33,7 +33,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
     - name: psycopg2 prerequisites
-      run: sudo apt-get install python-dev libpq-dev
+      run: sudo apt-get install python-dev-is-python3 libpq-dev
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
