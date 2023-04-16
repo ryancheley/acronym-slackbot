@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - name: deploy code
         uses: appleboy/ssh-action@v0.1.2
@@ -18,28 +18,18 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
 
           script: |
-            rm -rf acronym-slackbot
             git clone git@github.com:ryancheley/acronym-slackbot.git
 
-            source /home/slackbot/venv/bin/activate
+            source venv/bin/activate
 
-            cd /home/slackbot/
+            cp -r acronym-slackbot/* core
 
-            rm -rf /home/slackbot/core
+            pip -q install -r core/requirements.txt
 
-            cp -r /root/acronym-slackbot/ /home/slackbot/core
+            python core/manage.py migrate
 
-            cp /home/slackbot/.env /home/slackbot/core/core/.env
+            python core/manage.py collectstatic --noinput -v0
 
-            pip -q install -r /home/slackbot/core/requirements.txt
-
-            python /home/slackbot/core/manage.py migrate
-
-            mkdir /home/slackbot/core/static
-
-            mkdir /home/slackbot/core/staticfiles
-
-            python /home/slackbot/core/manage.py collectstatic --noinput -v0
-
-            systemctl daemon-reload
-            systemctl restart slackbot
+            sudo systemctl daemon-reload
+            sudo systemctl restart slackbot
+            rm -rf acronym-slackbot
