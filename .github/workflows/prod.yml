@@ -23,7 +23,7 @@ jobs:
 
             source venv/bin/activate
 
-            cp -r acronym-slackbot/* core
+            rsync -av --delete --exclude=.env acronym-slackbot/* core
 
             pip -q install -r core/requirements.txt
 
