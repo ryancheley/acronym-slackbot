@@ -154,7 +154,7 @@ pytz==2023.3
     # via djangorestframework
 pyyaml==6.0
     # via pre-commit
-requests==2.29.0
+requests==2.30.0
     # via -r requirements.in
 rich==13.3.4
     # via tryceratops
