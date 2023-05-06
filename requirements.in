@@ -21,6 +21,6 @@ pytest-randomly
 pytest-xdist
 requests
 slackclient
-psycopg2-binary
+psycopg[binary]
 django-upgrade
 tryceratops
