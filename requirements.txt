@@ -46,7 +46,7 @@ django==4.2.1
     #   django-nplusone
     #   django-permissions-policy
     #   djangorestframework
-django-admin-interface==0.25.0
+django-admin-interface==0.26.0
     # via -r requirements.in
 django-colorfield==0.8.0
     # via django-admin-interface
@@ -70,8 +70,6 @@ djangorestframework==3.14.0
     # via -r requirements.in
 djhtml==3.0.6
     # via -r requirements.in
-exceptiongroup==1.1.1
-    # via pytest
 execnet==1.9.0
     # via pytest-xdist
 filelock==3.12.0
@@ -174,13 +172,6 @@ tokenize-rt==5.0.0
     # via django-upgrade
 toml==0.10.2
     # via tryceratops
-tomli==2.0.1
-    # via
-    #   black
-    #   build
-    #   coverage
-    #   pyproject-hooks
-    #   pytest
 tryceratops==2.0.0
     # via -r requirements.in
 typing-extensions==4.5.0
