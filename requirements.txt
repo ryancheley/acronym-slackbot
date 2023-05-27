@@ -172,7 +172,7 @@ tokenize-rt==5.0.0
     # via django-upgrade
 toml==0.10.2
     # via tryceratops
-tryceratops==2.1.1
+tryceratops==2.3.2
     # via -r requirements.in
 typing-extensions==4.5.0
     # via psycopg
