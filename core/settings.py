@@ -13,6 +13,9 @@ env = environ.Env(
     SECURE_SSL_REDIRECT=(bool, False),
     SESSION_COOKIE_SECURE=(bool, False),
     CSRF_COOKIE_SECURE=(bool, False),
+    SLACK_VERIFICATION_TOKEN=(str, ""),
+    SLACK_BOT_USER_TOKEN=(str, ""),
+    CONFLUENCE_LINK=(str, ""),
 )
 
 environ.Env.read_env()

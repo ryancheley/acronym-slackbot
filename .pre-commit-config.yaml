@@ -26,4 +26,11 @@ repos:
     rev: 1.13.0
     hooks:
     -   id: django-upgrade
-        args: [--target-version, "4.1"]
+        args: [--target-version, "4.2"]
+-   repo: https://github.com/jazzband/pip-tools
+    rev: 6.12.0
+    hooks:
+      - id: pip-compile
+        name: pip-compile requirements.in
+        args: [requirements.in, --generate-hashes]
+        files: ^requirements/production\.(in|txt)$
