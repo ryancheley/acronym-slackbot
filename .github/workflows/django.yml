@@ -4,11 +4,12 @@ on:
   push:
     branches-ignore:
       - main
+      - dev
 
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     services:
       postgres:
         image: postgres:14.7
@@ -20,32 +21,25 @@ jobs:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v3
     - name: Set up Python 3.10
       uses: actions/setup-python@v1
       with:
         python-version: 3.10.11
-    - uses: actions/cache@v1
+    - uses: actions/cache@v3
       with:
         path: ~/.cache/pip
         key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-    - name: psycopg2 prerequisites
+    - name: psycopg3 prerequisites
       run: sudo apt-get install python-dev-is-python3 libpq-dev
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: create env file
-      run: |
-        touch core/.env
-        echo DEBUG=off >> core/.env
-        echo SECRET_KEY=${{ secrets.SECRET_KEY }} >> core/.env
-        echo SLACK_VERIFICATION_TOKEN=1 >> core/.env
-        echo SLACK_BOT_USER_TOKEN=1  >> core/.env
-        echo CONFLUENCE_LINK=1  >> core/.env
     - name: Run migrations
       run: python manage.py migrate
     - name: Run tests
