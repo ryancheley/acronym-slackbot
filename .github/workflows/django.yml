@@ -42,5 +42,10 @@ jobs:
         pip install -r requirements.txt
     - name: Run migrations
       run: python manage.py migrate
+    - name: Load Fixtures
+      run: |
+        if [ -d "fixture" ]; then
+            python manage.py loaddata fixture/*.json
+        fi      
     - name: Run tests
       run: coverage run -m pytest
