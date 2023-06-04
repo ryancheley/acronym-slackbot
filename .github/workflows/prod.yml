@@ -30,4 +30,5 @@ jobs:
 
             sudo systemctl daemon-reload
             sudo systemctl restart slackbot
+            
             rm -rf acronym-slackbot
