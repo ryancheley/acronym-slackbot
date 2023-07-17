@@ -351,10 +351,6 @@ djangorestframework==3.14.0 \
 djhtml==3.0.6 \
     --hash=sha256:abfc4d7b4730432ca6a98322fbdf8ae9d6ba254ea57ba3759a10ecb293bc57de
     # via -r requirements.in
-exceptiongroup==1.1.1 \
-    --hash=sha256:232c37c63e4f682982c8b6459f33a8981039e5fb8756b2074364e5055c498c9e \
-    --hash=sha256:d484c3090ba2889ae2928419117447a14daf3c1231d5e30d0aae34f354f01785
-    # via pytest
 execnet==1.9.0 \
     --hash=sha256:8f694f3ba9cc92cab508b152dcfe322153975c29bda272e2fd7f3f00f36e47c5 \
     --hash=sha256:a295f7cc774947aac58dde7fdc85f4aa00c42adf5d8f5468fc630c1acf30a142
@@ -640,9 +636,9 @@ pillow==9.5.0 \
     --hash=sha256:fe7e1c262d3392afcf5071df9afa574544f28eac825284596ac6db56e6d11062 \
     --hash=sha256:fed1e1cf6a42577953abbe8e6cf2fe2f566daebde7c34724ec8803c4c0cda579
     # via django-colorfield
-pip-tools==6.13.0 \
-    --hash=sha256:50943f151d87e752abddec8158622c34ad7f292e193836e90e30d87da60b19d9 \
-    --hash=sha256:61d46bd2eb8016ed4a924e196e6e5b0a268cd3babd79e593048720db23522bb1
+pip-tools==7.0.0 \
+    --hash=sha256:6a2308712727c86cc8a6cedc0e6ba01232a337c706d63926d3789462ad083d06 \
+    --hash=sha256:ae185db747195c8ed011866c366279cbb64f7f8c1528e7a828f515bd2bb0b31b
     # via -r requirements.in
 platformdirs==3.5.0 \
     --hash=sha256:47692bc24c1958e8b0f13dd727307cff1db103fca36399f457da8e05f222fdc4 \
@@ -839,15 +835,6 @@ toml==0.10.2 \
     --hash=sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b \
     --hash=sha256:b3bda1d108d5dd99f4a20d24d9c348e91c4db7ab1b749200bded2f839ccbe68f
     # via tryceratops
-tomli==2.0.1 \
-    --hash=sha256:939de3e7a6161af0c887ef91b7d41a53e7c5a1ca976325f429cb46ea9bc30ecc \
-    --hash=sha256:de526c12914f0c550d15924c62d72abc48d6fe7364aa87328337a31007fe8a4f
-    # via
-    #   black
-    #   build
-    #   coverage
-    #   pyproject-hooks
-    #   pytest
 tryceratops==2.3.2 \
     --hash=sha256:032fa3cf3659c9865a07b59057edf9efe9e38631e6b977fdae04064888cb62ba \
     --hash=sha256:e9d77811d8f7d886c4ceaeadccd2675c6f2d794344775463faf1cb969e49d865
@@ -855,9 +842,7 @@ tryceratops==2.3.2 \
 typing-extensions==4.5.0 \
     --hash=sha256:5cb5f4a79139d699607b3ef622a1dedafa84e115ab0024e0d9c044a9479ca7cb \
     --hash=sha256:fb33085c39dd998ac16d1431ebc293a8b3eedd00fd4a32de0ff79002c19511b4
-    # via
-    #   psycopg
-    #   tryceratops
+    # via psycopg
 urllib3==2.0.2 \
     --hash=sha256:61717a1095d7e155cdb737ac7bb2f4324a858a1e2e6466f6d03ff630ca68d3cc \
     --hash=sha256:d055c2f9d38dc53c808f6fdc8eab7360b6fdbbde02340ed25cfbcd817c62469e
