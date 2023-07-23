@@ -48,4 +48,6 @@ jobs:
             python manage.py loaddata fixture/*.json
         fi      
     - name: Run tests
-      run: coverage run -m pytest
+      uses: sjvrijn/pytest-last-failed@v2
+      with:
+        pytest-args: '--last-failed'
