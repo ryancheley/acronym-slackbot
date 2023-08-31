@@ -56,7 +56,7 @@ django-csp==3.7
     # via -r requirements.in
 django-debug-toolbar==4.2.0
     # via -r requirements.in
-django-environ==0.10.0
+django-environ==0.11.1
     # via -r requirements.in
 django-extensions==3.2.3
     # via -r requirements.in
@@ -70,8 +70,6 @@ djangorestframework==3.14.0
     # via -r requirements.in
 djhtml==3.0.6
     # via -r requirements.in
-exceptiongroup==1.1.3
-    # via pytest
 execnet==2.0.2
     # via pytest-xdist
 filelock==3.12.2
@@ -175,21 +173,10 @@ tokenize-rt==5.2.0
     # via django-upgrade
 toml==0.10.2
     # via tryceratops
-tomli==2.0.1
-    # via
-    #   black
-    #   build
-    #   coverage
-    #   pip-tools
-    #   pyproject-hooks
-    #   pytest
 tryceratops==2.3.2
     # via -r requirements.in
 typing-extensions==4.7.1
-    # via
-    #   asgiref
-    #   psycopg
-    #   tryceratops
+    # via psycopg
 urllib3==2.0.4
     # via requests
 virtualenv==20.24.3
