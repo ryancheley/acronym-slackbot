@@ -56,7 +56,7 @@ django-csp==3.7
     # via -r requirements.in
 django-debug-toolbar==4.2.0
     # via -r requirements.in
-django-environ==0.11.1
+django-environ==0.11.2
     # via -r requirements.in
 django-extensions==3.2.3
     # via -r requirements.in
@@ -122,7 +122,7 @@ platformdirs==3.10.0
     #   virtualenv
 pluggy==1.2.0
     # via pytest
-pre-commit==3.3.3
+pre-commit==3.4.0
     # via -r requirements.in
 psycopg[binary]==3.1.10
     # via -r requirements.in
@@ -136,7 +136,7 @@ pygments==2.16.1
     # via rich
 pyproject-hooks==1.0.0
     # via build
-pytest==7.4.0
+pytest==7.4.1
     # via
     #   -r requirements.in
     #   pytest-cov
