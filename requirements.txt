@@ -64,7 +64,7 @@ django-nplusone==0.0.5
     # via -r requirements.in
 django-permissions-policy==4.17.0
     # via -r requirements.in
-django-upgrade==1.14.1
+django-upgrade==1.15.0
     # via -r requirements.in
 djangorestframework==3.14.0
     # via -r requirements.in
@@ -124,9 +124,9 @@ pluggy==1.2.0
     # via pytest
 pre-commit==3.4.0
     # via -r requirements.in
-psycopg[binary]==3.1.10
+psycopg[binary]==3.1.11
     # via -r requirements.in
-psycopg-binary==3.1.10
+psycopg-binary==3.1.11
     # via psycopg
 pycodestyle==2.11.0
     # via flake8
