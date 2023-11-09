@@ -14,7 +14,7 @@ async-timeout==4.0.3
     # via aiohttp
 attrs==23.1.0
     # via aiohttp
-black==23.10.1
+black==23.11.0
     # via -r requirements.in
 build==0.10.0
     # via pip-tools
@@ -147,7 +147,7 @@ pytest==7.4.3
     #   pytest-xdist
 pytest-cov==4.1.0
     # via -r requirements.in
-pytest-django==4.6.0
+pytest-django==4.7.0
     # via -r requirements.in
 pytest-randomly==3.15.0
     # via -r requirements.in
