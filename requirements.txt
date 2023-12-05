@@ -37,7 +37,7 @@ coverage[toml]==7.3.0
     #   pytest-cov
 distlib==0.3.7
     # via virtualenv
-django==4.2.7
+django==5.0
     # via
     #   -r requirements.in
     #   django-csp
@@ -127,9 +127,7 @@ pluggy==1.2.0
 pre-commit==3.5.0
     # via -r requirements.in
 psycopg[binary]==3.1.14
-    # via
-    #   -r requirements.in
-    #   psycopg
+    # via -r requirements.in
 psycopg-binary==3.1.14
     # via psycopg
 pycodestyle==2.11.0
