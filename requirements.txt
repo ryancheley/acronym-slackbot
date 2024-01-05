@@ -76,7 +76,7 @@ execnet==2.0.2
     # via pytest-xdist
 filelock==3.12.2
     # via virtualenv
-flake8==6.1.0
+flake8==7.0.0
     # via -r requirements.in
 frozenlist==1.4.0
     # via
@@ -132,7 +132,7 @@ psycopg-binary==3.1.16
     # via psycopg
 pycodestyle==2.11.0
     # via flake8
-pyflakes==3.1.0
+pyflakes==3.2.0
     # via flake8
 pygments==2.16.1
     # via rich
