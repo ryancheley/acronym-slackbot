@@ -24,7 +24,7 @@ def process_user_message(text: str, user: str):
     if definition:
         message = f"The acronym '{text.upper()}' means: {definition}"
     else:
-        confluence = CONFLUENCE_LINK + f'/dosearchsite.action?cql=siteSearch+~+"{text}"'
+        confluence = CONFLUENCE_LINK + f'articles?query=%7B{text}%7D'
         confluence_link = f"<{confluence}|Confluence>"
         message = f"I'm sorry <@{user}> I don't know what *{text.upper()}* is :shrug:. Try checking {confluence_link}."
 
