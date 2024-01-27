@@ -15,7 +15,7 @@ from api.utils import (
 bad_search_term = "cad"
 CONFLUENCE_LINK = getattr(settings, "CONFLUENCE_LINK", None)
 confluence = CONFLUENCE_LINK + f'articles?query=%7B{bad_search_term}%7D'
-confluence_link = f"<{confluence}|Confluence>"
+confluence_link = f"<{confluence}|YouTrack>"
 
 
 @pytest.mark.django_db
