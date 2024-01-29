@@ -16,7 +16,7 @@ async-timeout==4.0.3
     # via aiohttp
 attrs==23.1.0
     # via aiohttp
-black==23.12.1
+black==24.1.1
     # via -r requirements.in
 build==0.10.0
     # via pip-tools
@@ -48,7 +48,7 @@ django==5.0.1
     #   django-nplusone
     #   django-permissions-policy
     #   djangorestframework
-django-admin-interface==0.28.3
+django-admin-interface==0.28.4
     # via -r requirements.in
 django-colorfield==0.9.0
     # via django-admin-interface
@@ -124,7 +124,7 @@ platformdirs==3.10.0
     # via
     #   black
     #   virtualenv
-pluggy==1.2.0
+pluggy==1.4.0
     # via pytest
 pre-commit==3.6.0
     # via -r requirements.in
@@ -140,7 +140,7 @@ pygments==2.16.1
     # via rich
 pyproject-hooks==1.0.0
     # via build
-pytest==7.4.4
+pytest==8.0.0
     # via
     #   -r requirements.in
     #   pytest-cov
