@@ -18,7 +18,7 @@ attrs==23.1.0
     # via aiohttp
 black==24.2.0
     # via -r requirements.in
-build==0.10.0
+build==1.0.3
     # via pip-tools
 certifi==2023.7.22
     # via requests
@@ -118,7 +118,7 @@ pathspec==0.11.2
     # via black
 pillow==10.0.0
     # via django-colorfield
-pip-tools==7.3.0
+pip-tools==7.4.0
     # via -r requirements.in
 platformdirs==3.10.0
     # via
@@ -126,7 +126,7 @@ platformdirs==3.10.0
     #   virtualenv
 pluggy==1.4.0
     # via pytest
-pre-commit==3.6.1
+pre-commit==3.6.2
     # via -r requirements.in
 psycopg[binary]==3.1.18
     # via -r requirements.in
@@ -139,8 +139,10 @@ pyflakes==3.2.0
 pygments==2.16.1
     # via rich
 pyproject-hooks==1.0.0
-    # via build
-pytest==8.0.0
+    # via
+    #   build
+    #   pip-tools
+pytest==8.0.1
     # via
     #   -r requirements.in
     #   pytest-cov
