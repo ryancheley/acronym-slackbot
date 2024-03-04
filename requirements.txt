@@ -54,7 +54,7 @@ django-colorfield==0.9.0
     # via django-admin-interface
 django-coverage-plugin==3.1.0
     # via -r requirements.in
-django-csp==3.7
+django-csp==3.8
     # via -r requirements.in
 django-debug-toolbar==4.3.0
     # via -r requirements.in
@@ -142,7 +142,7 @@ pyproject-hooks==1.0.0
     # via
     #   build
     #   pip-tools
-pytest==8.0.2
+pytest==8.1.0
     # via
     #   -r requirements.in
     #   pytest-cov
