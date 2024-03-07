@@ -118,7 +118,7 @@ pathspec==0.11.2
     # via black
 pillow==10.0.0
     # via django-colorfield
-pip-tools==7.4.0
+pip-tools==7.4.1
     # via -r requirements.in
 platformdirs==3.10.0
     # via
