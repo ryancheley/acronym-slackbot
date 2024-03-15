@@ -24,3 +24,4 @@ slackclient
 psycopg[binary]
 django-upgrade
 tryceratops
+uv
