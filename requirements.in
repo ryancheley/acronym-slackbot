@@ -25,3 +25,4 @@ psycopg[binary]
 django-upgrade
 tryceratops
 uv
+django-model-info

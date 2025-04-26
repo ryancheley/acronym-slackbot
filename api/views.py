@@ -54,11 +54,91 @@ class AddAcronym(APIView):
             acronym, definition = string_split(request_data)
             user = request.data["user_name"]
             record = Acronym.objects.create(
-                acronym=acronym, definition=definition, create_by=user, create_date=datetime.now(), approved=False
+                acronym=acronym, definition=definition, create_by=user, create_date=datetime.now(), approved=True
             )
             record.save()
         return Response(status=response_status)
 
+
+class UpdateAcronym(APIView):
+    def post(self, request, *args, **kwargs):  # pragma: no cover
+        request_data = request.data["text"]
+        channel = request.data["channel_id"]
+        user = request.data["user_name"]
+        
+        # Parse the update command format (expected: "acronym: new_definition")
+        acronym, new_definition = string_split(request_data)
+        
+        if not acronym or not new_definition:
+            message = "The format of the acronym update needs to be 'acronym: new definition'."
+            message += "\nFor example:\n\t*example: this is an updated example.*\nPlease try again."
+            blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
+            client.chat_postMessage(blocks=blocks, channel=channel)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if acronym exists
+        try:
+            acronym_obj = Acronym.objects.get(acronym__iexact=acronym)
+        except Acronym.DoesNotExist:
+            message = f"Acronym *{acronym.upper()}* not found. Cannot update."
+            blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
+            client.chat_postMessage(blocks=blocks, channel=channel)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        # Update the acronym
+        old_definition = acronym_obj.definition
+        acronym_obj.definition = new_definition
+        acronym_obj.update_by = user
+        acronym_obj.update_date = datetime.now()
+        acronym_obj.save()
+        
+        # Send success message
+        message = f"Acronym *{acronym.upper()}* successfully updated.\nOld definition: '{old_definition}'\nNew definition: '{new_definition}'"
+        blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
+        client.chat_postMessage(blocks=blocks, channel=channel)
+        
+        return Response(status=status.HTTP_200_OK)
+
+class DeleteAcronym(APIView):
+    def post(self, request, *args, **kwargs):  # pragma: no cover
+        request_data = request.data["text"]
+        channel = request.data["channel_id"]
+        user = request.data["user_name"]
+        
+        # For deletion, we only need the acronym - no definition required
+        acronym = request_data.strip()
+        
+        if not acronym:
+            message = "Please provide an acronym to delete. For example: */acrodel example*"
+            blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
+            client.chat_postMessage(blocks=blocks, channel=channel)
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+        
+        # Check if acronym exists
+        try:
+            acronym_obj = Acronym.objects.get(acronym__iexact=acronym)
+        except Acronym.DoesNotExist:
+            message = f"Acronym *{acronym.upper()}* not found. Cannot delete."
+            blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
+            client.chat_postMessage(blocks=blocks, channel=channel)
+            return Response(status=status.HTTP_404_NOT_FOUND)
+        
+        # Store info before deletion for the message
+        deleted_acronym = acronym_obj.acronym
+        deleted_definition = acronym_obj.definition
+        
+        # Update deletion metadata
+        acronym_obj.approved = False
+        acronym_obj.delete_by = user
+        acronym_obj.delete_date = datetime.now()
+        acronym_obj.save()
+
+        # Send success message
+        message = f"Acronym *{deleted_acronym.upper()}* with definition '{deleted_definition}' has been deleted."
+        blocks = [{"type": "section", "text": {"type": "mrkdwn", "text": message}}]
+        client.chat_postMessage(blocks=blocks, channel=channel)
+        
+        return Response(status=status.HTTP_200_OK)
 
 class Events(APIView):
     def post(self, request, *args, **kwargs):  # pragma: no cover
