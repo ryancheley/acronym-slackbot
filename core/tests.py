@@ -97,15 +97,16 @@ class DjangoModelInfoTestCase(TestCase):
         
         # Always test the command execution to ensure both paths are covered
         stdout = io.StringIO()
-        command_succeeded = False
-        help_output = ""
+        exception_occurred = False
         
         try:
             call_command("modelinfo", "--help", stdout=stdout)
-            help_output = stdout.getvalue()
-            command_succeeded = True
         except Exception:
-            command_succeeded = False
+            exception_occurred = True
+        
+        # Always get output and determine success (these lines always execute)
+        help_output = stdout.getvalue()
+        command_succeeded = not exception_occurred
         
         # Verify that command success correlates with availability
         self.assertEqual(modelinfo_available, command_succeeded,
