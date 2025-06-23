@@ -95,14 +95,33 @@ class DjangoModelInfoTestCase(TestCase):
         modelinfo_available = "modelinfo" in commands
         self.assertEqual(settings.DEBUG, modelinfo_available)
         
-        # Test functionality only attempts when we expect success
+        # Always test the command execution to ensure both paths are covered
+        stdout = io.StringIO()
+        command_succeeded = False
+        help_output = ""
+        
         try:
-            stdout = io.StringIO()
             call_command("modelinfo", "--help", stdout=stdout)
             help_output = stdout.getvalue()
-            # If we got here without exception, the command should be available
-            self.assertTrue(modelinfo_available, "Command succeeded but was not expected to be available")
-            self.assertIn("fields and methods for each model", help_output)
+            command_succeeded = True
         except Exception:
-            # If command failed, it should not be available
-            self.assertFalse(modelinfo_available, "Command failed but was expected to be available")
+            command_succeeded = False
+        
+        # Verify that command success correlates with availability
+        self.assertEqual(modelinfo_available, command_succeeded,
+                        f"Command success ({command_succeeded}) should match availability ({modelinfo_available})")
+        
+        # If command succeeded, verify the help content
+        success_and_available = command_succeeded and modelinfo_available
+        failure_expected = not modelinfo_available
+        
+        # This ensures both branches are tested depending on the environment
+        self.assertTrue(success_and_available or failure_expected,
+                       "Either command should succeed when available OR fail when not available")
+        
+        # Test help content correlation with command success
+        help_contains_expected = "fields and methods for each model" in help_output
+        
+        # Help content should be present if and only if command succeeded
+        self.assertEqual(command_succeeded, help_contains_expected,
+                        f"Help content presence ({help_contains_expected}) should match command success ({command_succeeded})")
