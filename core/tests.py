@@ -2,7 +2,7 @@ import io
 
 from django.conf import settings
 from django.core.management import call_command, get_commands
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django_permissions_policy.__init__ import _FEATURE_NAMES
 
 PERMISSIONS_POLICY = list(getattr(settings, "PERMISSIONS_POLICY", None))
@@ -21,82 +21,89 @@ def test_check_current_permission_policy_items():
 class DjangoModelInfoTestCase(TestCase):
     """Test case for django-model-info integration"""
 
-    def test_django_model_info_conditional_installation(self):
-        """Test that django-model-info app installation follows DEBUG mode setting"""
+    def test_django_model_info_app_config(self):
+        """Test django-model-info app configuration"""
         app_config = "django_model_info.apps.DjangoModelInfoConfig"
         
-        if settings.DEBUG:
-            self.assertIn(app_config, settings.INSTALLED_APPS,
-                         "django-model-info should be installed when DEBUG=True")
-        else:
-            self.assertNotIn(app_config, settings.INSTALLED_APPS,
-                           "django-model-info should NOT be installed when DEBUG=False")
+        # This test will pass in both DEBUG and non-DEBUG modes
+        # by testing the logical relationship rather than absolute presence
+        debug_mode = settings.DEBUG
+        app_installed = app_config in settings.INSTALLED_APPS
+        
+        # The app should be installed if and only if DEBUG is True
+        self.assertEqual(debug_mode, app_installed,
+                        f"django-model-info should be {'installed' if debug_mode else 'not installed'} "
+                        f"when DEBUG={debug_mode}")
 
-    def test_django_model_info_commands_availability(self):
-        """Test that django-model-info commands are available based on DEBUG mode"""
+    def test_management_commands_availability(self):
+        """Test management commands are available when appropriate"""
         commands = get_commands()
         expected_commands = ["modelinfo", "modelfilters", "modelgraph", "migrationgraph"]
         
-        if settings.DEBUG:
-            for cmd in expected_commands:
-                self.assertIn(cmd, commands, f"Command '{cmd}' should be available in DEBUG mode")
+        # Count how many expected commands are available
+        available_commands = [cmd for cmd in expected_commands if cmd in commands]
+        
+        # Verify commands are available when DEBUG is True, unavailable when False
+        debug_mode = settings.DEBUG
+        if debug_mode:
+            self.assertEqual(len(available_commands), len(expected_commands),
+                           f"All {len(expected_commands)} django-model-info commands should be available in DEBUG mode")
         else:
-            # In production, we just verify the test runs without failing
-            # Commands may or may not be available depending on CI environment
-            self.assertTrue(True, "Test executed successfully in non-DEBUG mode")
+            self.assertEqual(len(available_commands), 0,
+                           "No django-model-info commands should be available in production mode")
 
-    def test_modelinfo_command_functionality(self):
-        """Test that modelinfo command works when available"""
-        if settings.DEBUG:
-            try:
-                stdout = io.StringIO()
-                call_command("modelinfo", "--help", stdout=stdout)
-                help_output = stdout.getvalue()
-                self.assertIn("fields and methods for each model", help_output)
-            except Exception as e:
-                self.fail(f"modelinfo command help failed: {e}")
+    def test_modelinfo_command_when_available(self):
+        """Test modelinfo command functionality when it should be available"""
+        commands = get_commands()
+        
+        if "modelinfo" in commands:
+            # Command is available, test it works
+            stdout = io.StringIO()
+            call_command("modelinfo", "--help", stdout=stdout)
+            help_output = stdout.getvalue()
+            self.assertIn("fields and methods for each model", help_output)
         else:
-            # In non-DEBUG mode, just verify the condition was checked
-            self.assertFalse(settings.DEBUG, "Verified DEBUG mode is False")
+            # Command not available, verify this matches our expectation
+            self.assertFalse(settings.DEBUG, "modelinfo should only be unavailable when DEBUG=False")
 
-    def test_modelfilters_command_functionality(self):
-        """Test that modelfilters command works when available"""
-        if settings.DEBUG:
-            try:
-                stdout = io.StringIO()
-                call_command("modelfilters", "--help", stdout=stdout)
-                help_output = stdout.getvalue()
-                self.assertIn("Show the available filters for model", help_output)
-            except Exception as e:
-                self.fail(f"modelfilters command help failed: {e}")
+    def test_modelfilters_command_when_available(self):
+        """Test modelfilters command functionality when it should be available"""
+        commands = get_commands()
+        
+        if "modelfilters" in commands:
+            # Command is available, test it works
+            stdout = io.StringIO()
+            call_command("modelfilters", "--help", stdout=stdout)
+            help_output = stdout.getvalue()
+            self.assertIn("Show the available filters for model", help_output)
         else:
-            # In non-DEBUG mode, just verify the condition was checked
-            self.assertFalse(settings.DEBUG, "Verified DEBUG mode is False")
+            # Command not available, verify this matches our expectation
+            self.assertFalse(settings.DEBUG, "modelfilters should only be unavailable when DEBUG=False")
 
-    def test_modelgraph_command_functionality(self):
-        """Test that modelgraph command works when available"""
-        if settings.DEBUG:
-            try:
-                stdout = io.StringIO()
-                call_command("modelgraph", "--help", stdout=stdout)
-                help_output = stdout.getvalue()
-                self.assertIn("Create a graph of models", help_output)
-            except Exception as e:
-                self.fail(f"modelgraph command help failed: {e}")
+    def test_modelgraph_command_when_available(self):
+        """Test modelgraph command functionality when it should be available"""
+        commands = get_commands()
+        
+        if "modelgraph" in commands:
+            # Command is available, test it works
+            stdout = io.StringIO()
+            call_command("modelgraph", "--help", stdout=stdout)
+            help_output = stdout.getvalue()
+            self.assertIn("Create a graph of models", help_output)
         else:
-            # In non-DEBUG mode, just verify the condition was checked
-            self.assertFalse(settings.DEBUG, "Verified DEBUG mode is False")
+            # Command not available, verify this matches our expectation
+            self.assertFalse(settings.DEBUG, "modelgraph should only be unavailable when DEBUG=False")
 
-    def test_migrationgraph_command_functionality(self):
-        """Test that migrationgraph command works when available"""
-        if settings.DEBUG:
-            try:
-                stdout = io.StringIO()
-                call_command("migrationgraph", "--help", stdout=stdout)
-                help_output = stdout.getvalue()
-                self.assertIn("Create a graph of migration", help_output)
-            except Exception as e:
-                self.fail(f"migrationgraph command help failed: {e}")
+    def test_migrationgraph_command_when_available(self):
+        """Test migrationgraph command functionality when it should be available"""
+        commands = get_commands()
+        
+        if "migrationgraph" in commands:
+            # Command is available, test it works
+            stdout = io.StringIO()
+            call_command("migrationgraph", "--help", stdout=stdout)
+            help_output = stdout.getvalue()
+            self.assertIn("Create a graph of migration", help_output)
         else:
-            # In non-DEBUG mode, just verify the condition was checked
-            self.assertFalse(settings.DEBUG, "Verified DEBUG mode is False")
+            # Command not available, verify this matches our expectation
+            self.assertFalse(settings.DEBUG, "migrationgraph should only be unavailable when DEBUG=False")
