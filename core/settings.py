@@ -79,6 +79,7 @@ if DEBUG:
     INSTALLED_APPS += [
         "debug_toolbar",
         "django_extensions",
+        "django_model_info.apps.DjangoModelInfoConfig",
     ]
     MIDDLEWARE += [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
