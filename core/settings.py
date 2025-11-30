@@ -16,6 +16,7 @@ env = environ.Env(
     SLACK_VERIFICATION_TOKEN=(str, ""),
     SLACK_BOT_USER_TOKEN=(str, ""),
     CONFLUENCE_LINK=(str, ""),
+    SECURE_PROXY_SSL_HEADER=(str, None),
 )
 
 environ.Env.read_env()
@@ -226,6 +227,11 @@ CSRF_COOKIE_SECURE = env("CSRF_COOKIE_SECURE")
 SECURE_HSTS_PRELOAD = env("SECURE_HSTS_PRELOAD")
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Trust proxy headers from Coolify/Caddy
+if proxy_header := env("SECURE_PROXY_SSL_HEADER"):
+    header, value = proxy_header.split(",")
+    SECURE_PROXY_SSL_HEADER = (header, value)
 
 GRAPH_MODELS = {
     "all_applications": True,
