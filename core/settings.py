@@ -254,6 +254,7 @@ csp_list = [
     "https://fonts.googleapis.com",
     "https://use.fontawesome.com",
     "https://slackbot.ryancheley.com",
+    "https://hetzner.slackbot.ryancheley.com",
     "http://127.0.0.1:8000",
     "https://a753-47-158-193-137.ngrok.io",
     "http://www.bohemiancoding.com",
