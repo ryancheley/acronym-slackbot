@@ -1,7 +1,7 @@
 import ssl
 from datetime import datetime
 
-import slack
+import slack_sdk as slack
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets

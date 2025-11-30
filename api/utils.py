@@ -1,7 +1,7 @@
 import ssl
 
 import requests
-import slack
+import slack_sdk as slack
 from django.conf import settings
 from rest_framework import status
 

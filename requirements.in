@@ -20,7 +20,7 @@ pytest-django
 pytest-randomly
 pytest-xdist
 requests
-slackclient
+slack-sdk
 psycopg[binary]
 django-upgrade
 tryceratops
