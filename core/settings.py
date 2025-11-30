@@ -66,6 +66,7 @@ X_FRAME_OPTIONS = "DENY"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "csp.middleware.CSPMiddleware",
     "django_permissions_policy.PermissionsPolicyMiddleware",
@@ -162,9 +163,14 @@ STATIC_URL = "/static/"
 
 STATIC_ROOT = Path(BASE_DIR / "static")
 
-STATICFILES_DIRS = [
-    BASE_DIR / "staticfiles",
-]
+# Only include STATICFILES_DIRS if the directory exists (development)
+if DEBUG:
+    STATICFILES_DIRS = [
+        BASE_DIR / "staticfiles",
+    ]
+else:
+    # WhiteNoise configuration for production
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 
