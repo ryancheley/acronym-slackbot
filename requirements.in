@@ -26,3 +26,4 @@ django-upgrade
 tryceratops
 uv
 django-model-info
+whitenoise
