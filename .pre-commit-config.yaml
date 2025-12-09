@@ -19,4 +19,14 @@ repos:
     rev: 1.23.0
     hooks:
     -   id: django-upgrade
-        args: [--target-version, "4.2"]
+        args: [--target-version, "6.0"]
+- repo: local
+  hooks:
+  - id: zizmor
+    name: GitHub Actions security check
+    description: Security analysis for GitHub Actions workflows
+    entry: uv run zizmor
+    language: system
+    files: ^\.github/workflows/.*\.ya?ml$
+    pass_filenames: true
+    verbose: true
