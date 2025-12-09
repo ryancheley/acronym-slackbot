@@ -109,6 +109,9 @@ addopts = [
 omit = [
     "core/settings.py",
     "core/urls.py",
+    "core/asgi.py",
+    "core/wsgi.py",
+    "core/storage_backends.py",
     "*migrations*",
     "manage.py",
     "*/tests/*",
