@@ -178,8 +178,8 @@ else:
     # WhiteNoise configuration for production
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-LOGIN_REDIRECT_URL = "pages:home"
-LOGOUT_REDIRECT_URL = "pages:home"
+LOGIN_REDIRECT_URL = "acronyms:home_page"
+LOGOUT_REDIRECT_URL = "acronyms:home_page"
 
 ADMINS = ["rcheley@gmail.com"]
 
