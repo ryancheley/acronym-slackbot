@@ -39,7 +39,7 @@ jobs:
     - name: psycopg3 prerequisites
       run: sudo apt-get install python-dev-is-python3 libpq-dev
     - name: Install dependencies
-      run: uv pip install --system .
+      run: uv pip install --system . ".[dev]"
     - name: Run migrations
       run: python manage.py migrate
     - name: Load Fixtures
