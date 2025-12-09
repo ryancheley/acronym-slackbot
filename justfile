@@ -23,10 +23,6 @@ branch_name := `git branch --show-current`
     echo 'This may take a while ... got do something nice for yourself'
     mutmut run
 
-# builds the styles.css into the static directory
-@style-build:
-    npx tailwindcss-cli@latest build jstoolchain/css/tailwind.css -c jstoolchain/tailwind.config.js -o staticfiles/css/styles.css
-
 # checks the deployment for prod settings; will return error if the check doesn't pass
 @check:
     cp core/.env core/.env_staging
@@ -39,14 +35,39 @@ branch_name := `git branch --show-current`
     git switch {{branch}}
     git pull origin {{branch}}
 
-# applies linting to project (black, djhtml, flake8)
+# applies linting to project (ruff, djhtml, tryceratops, django-upgrade)
 @lint:
-    pre-commit run --all-files
+    prek run --all-files
 
 @run:
     python manage.py runserver
 
 @pip:
-    pip install -U pip
-    uv pip compile requirements.in
-    uv pip install -r requirements.txt
+    pip install -U pip uv
+    uv pip install -e ".[dev]"
+
+# Docker commands
+@docker-build:
+    docker build -t acronym-slackbot:latest .
+
+@docker-up:
+    docker compose up -d
+
+@docker-down:
+    docker compose down
+
+@docker-logs:
+    docker compose logs -f web
+
+@docker-shell:
+    docker compose exec web /bin/bash
+
+@docker-test:
+    docker compose exec web pytest
+
+@docker-restart:
+    docker compose restart web
+
+@docker-clean:
+    docker compose down -v
+    docker system prune -f

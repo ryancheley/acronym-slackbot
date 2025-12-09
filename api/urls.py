@@ -1,6 +1,7 @@
 from django.urls import include, path
 
-from .views import AcronymViewSet, AddAcronym, CountAcronyms, Events, UpdateAcronym, DeleteAcronym
+from .views import AcronymViewSet, AddAcronym, CountAcronyms, DeleteAcronym, Events, UpdateAcronym
+
 
 app_name = "api"
 
