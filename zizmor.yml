@@ -1,0 +1,12 @@
+# zizmor configuration
+# Ignore specific security warnings that are false positives for this project
+
+rules:
+  # The sync-uat workflow requires persisted credentials to push to the uat branch
+  # We've mitigated this by:
+  # 1. Using explicit permissions: contents: write (least privilege)
+  # 2. Only running on pushes to main (limited attack surface)
+  # 3. Not creating or uploading any artifacts
+  artipacked:
+    ignore:
+      - sync-uat.yml  # Workflow needs credentials to git push
