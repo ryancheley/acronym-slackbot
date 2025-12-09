@@ -60,9 +60,11 @@ WORKDIR /app
 # Copy application code
 COPY --chown=django:django . /app/
 
-# Collect static files
+# Copy and set permissions for entrypoint script
+COPY --chown=django:django docker-entrypoint.sh /app/
+RUN chmod +x /app/docker-entrypoint.sh
+
 USER django
-RUN python manage.py collectstatic --noinput || true
 
 # Expose port
 EXPOSE 8000
@@ -71,5 +73,5 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
     CMD curl -f http://localhost:8000/health/ || exit 1
 
-# Run gunicorn
-CMD ["gunicorn", "core.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "4", "--timeout", "120"]
+# Run entrypoint script
+CMD ["/app/docker-entrypoint.sh"]
