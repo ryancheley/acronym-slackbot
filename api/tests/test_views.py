@@ -6,6 +6,7 @@ from rest_framework.test import APIRequestFactory
 from acronyms.models import Acronym
 from api.views import AcronymViewSet, CountAcronyms, Events
 
+
 SLACK_VERIFICATION_TOKEN = getattr(settings, "SLACK_VERIFICATION_TOKEN", None)
 
 

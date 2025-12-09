@@ -2,6 +2,10 @@ from pathlib import Path
 
 import environ
 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     DEBUG=(bool, False),
@@ -19,10 +23,8 @@ env = environ.Env(
     SECURE_PROXY_SSL_HEADER=(str, None),
 )
 
-environ.Env.read_env()
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Read .env file from project root
+environ.Env.read_env(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,6 +58,10 @@ INSTALLED_APPS = [
     "django.contrib.admindocs",
     # Third Party App
     "rest_framework",
+    "health_check",
+    "health_check.db",
+    "health_check.cache",
+    "health_check.storage",
     # Local
     "core",
     "acronyms",
@@ -172,15 +178,10 @@ else:
     # WhiteNoise configuration for production
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
+LOGIN_REDIRECT_URL = "acronyms:home_page"
+LOGOUT_REDIRECT_URL = "acronyms:home_page"
 
-CRISPY_TEMPLATE_PACK = "tailwind"
-
-
-LOGIN_REDIRECT_URL = "pages:home"
-LOGOUT_REDIRECT_URL = "pages:home"
-
-ADMINS = [("Ryan Cheley", "rcheley@gmail.com")]
+ADMINS = ["rcheley@gmail.com"]
 
 SERVER_EMAIL = "rcheley@gmail.com"
 
@@ -196,21 +197,11 @@ LOGGING = {
             "class": "django.utils.log.AdminEmailHandler",
             "include_html": True,
         },
-        "file": {
-            "level": "ERROR",
-            "class": "logging.FileHandler",
-            "filename": Path(BASE_DIR.parent / "debug.log"),
-        },
     },
     "loggers": {
         "django.security.DisallowedHost": {
             "handlers": ["null"],
             "propagate": False,
-        },
-        "django": {
-            "handlers": ["file"],
-            "level": "ERROR",
-            "propagate": True,
         },
     },
 }
@@ -254,6 +245,7 @@ csp_list = [
     "https://fonts.googleapis.com",
     "https://use.fontawesome.com",
     "https://slackbot.ryancheley.com",
+    "https://uat.slackbot.ryancheley.com",
     "https://hetzner.slackbot.ryancheley.com",
     "http://127.0.0.1:8000",
     "https://a753-47-158-193-137.ngrok.io",

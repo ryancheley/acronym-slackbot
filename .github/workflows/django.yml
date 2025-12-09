@@ -1,7 +1,6 @@
 name: Django CI
 
 on:
-  workflow_dispatch:
   push:
     branches-ignore:
       - main
@@ -10,10 +9,12 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
     services:
       postgres:
-        image: postgres:14.7
+        image: postgres:16
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
@@ -25,33 +26,28 @@ jobs:
 
     steps:
     - uses: actions/checkout@v6
-    - name: Set up Python 3.10
+      with:
+        persist-credentials: false
+    - name: Set up Python 3.14
       uses: actions/setup-python@v6
       with:
-        python-version: '3.10'
-    - uses: actions/cache@v4
+        python-version: '3.14'
+    - name: Install uv
+      uses: astral-sh/setup-uv@ed21f2f24f8dd64503750218de024bcf64c7250a
       with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-
+        enable-cache: true
     - name: psycopg3 prerequisites
       run: sudo apt-get install python-dev-is-python3 libpq-dev
     - name: Install dependencies
-      run: |
-        pip install -U pip
-        pip install uv
-        uv pip compile requirements.in
-        uv pip install -r requirements.txt --system
-        python -m pip install --upgrade pip
+      run: uv pip install --system . ".[dev]"
     - name: Run migrations
       run: python manage.py migrate
     - name: Load Fixtures
       run: |
         if [ -d "fixture" ]; then
             python manage.py loaddata fixture/*.json
-        fi      
+        fi
     - name: Run tests
-      uses: sjvrijn/pytest-last-failed@v2
+      uses: sjvrijn/pytest-last-failed@2e80af88a65052ccd45a1480472776466d3aecff
       with:
         pytest-args: '--last-failed'

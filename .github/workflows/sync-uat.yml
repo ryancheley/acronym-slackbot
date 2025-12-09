@@ -1,0 +1,20 @@
+name: Sync UAT with Main
+on:
+  push:
+    branches: [main]
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Merge main to uat
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git checkout uat
+          git merge main
+          git push

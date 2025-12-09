@@ -1,30 +1,45 @@
 version: 2
 updates:
-  - package-ecosystem: pip
+  # Update Python dependencies weekly
+  - package-ecosystem: "pip"
     directory: "/"
     schedule:
-      interval: daily
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
     groups:
-        python-packages:
-          patterns:
-            - "*"
-    target-branch: "main"
+      python-packages:
+        patterns:
+          - "*"
+    reviewers:
+      - "@ryancheley"
+    assignees:
+      - "@ryancheley"
     commit-message:
-      prefix: "pip prod"
+      prefix: ":arrow_up: deps"
       include: "scope"
     labels:
-      - "🛠️ maintenance"
+    - "🛠️ maintenance"
+
+  # Update GitHub Actions weekly
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 5
     groups:
       github-actions:
         patterns:
           - "*"
-    target-branch: "main"
+    reviewers:
+      - "@ryancheley"
+    assignees:
+      - "@ryancheley"
     commit-message:
-      prefix: "github-actions"
+      prefix: ":construction_worker: ci"
       include: "scope"
     labels:
-      - "🛠️ maintenance"
+    - "🛠️ maintenance"

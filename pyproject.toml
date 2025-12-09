@@ -1,9 +1,141 @@
-[tool.black]
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["acronyms", "api", "core"]
+
+[project]
+name = "acronym-slackbot"
+version = "1.0.0"
+description = "Django-based Slack bot for managing acronym definitions"
+requires-python = ">=3.13"
+readme = "README.md"
+authors = [
+    {name = "Ryan Cheley", email = "rcheley@gmail.com"}
+]
+dependencies = [
+    "Django>=5.0",
+    "djangorestframework",
+    "django-admin-interface",
+    "django-csp",
+    "django-environ",
+    "django-health-check",
+    "django-permissions-policy",
+    "gunicorn",
+    "psycopg[binary]",
+    "requests",
+    "slack-sdk",
+    "whitenoise",
+]
+
+[project.optional-dependencies]
+dev = [
+    "django-coverage-plugin",
+    "django-debug-toolbar",
+    "django-extensions",
+    "django-model-info",
+    "django-nplusone",
+    "django-upgrade",
+    "djhtml",
+    "pip-tools",
+    "prek",
+    "pytest",
+    "pytest-cov",
+    "pytest-django",
+    "pytest-randomly",
+    "pytest-xdist",
+    "ruff",
+    "tryceratops",
+    "uv",
+    "zizmor",
+]
+
+[tool.ruff]
 line-length = 130
-target-version = ['py38']
-include = '\.pyi?$'
-exclude = '(venv|migrations|manage.py|asgi.py|wsgi.py)'
+target-version = "py313"
+exclude = [
+    ".git",
+    ".venv",
+    "venv",
+    "__pycache__",
+    "migrations",
+    "manage.py",
+    "asgi.py",
+    "wsgi.py",
+    "staticfiles",
+    "static",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # pyflakes
+    "I",      # isort
+    "C90",    # mccabe complexity
+    "UP",     # pyupgrade
+    "N",      # pep8-naming
+    "DJ",     # flake8-django
+    "TRY",    # tryceratops
+]
+ignore = [
+    "TRY002", # Ignore specific tryceratops rules as needed
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["core", "acronyms", "api"]
+force-single-line = false
+lines-after-imports = 2
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pyupgrade]
+# Keep using Python 3.13 features
+keep-runtime-typing = true
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings"
+python_files = ["tests.py", "test_*.py"]
+addopts = [
+    "-p", "no:warnings",
+    "--cov-config=pyproject.toml",
+    "--cov",
+    "-n", "auto",
+    "--dist", "loadscope",
+]
+
+[tool.coverage.run]
+omit = [
+    "core/settings.py",
+    "core/urls.py",
+    "core/asgi.py",
+    "core/wsgi.py",
+    "core/storage_backends.py",
+    "*migrations*",
+    "manage.py",
+    "*/tests/*",
+    "*/test_*.py",
+]
+source = ["."]
+
+[tool.coverage.report]
+fail_under = 100
+show_missing = true
+skip_covered = false
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
 
 [tool.tryceratops]
 exclude = ["venv", "manage.py"]
 ignore = ["TC002"]
+
+[tool.djhtml]
+tabwidth = 4
