@@ -13,44 +13,60 @@ jobs:
     runs-on: ubuntu-22.04
     services:
       postgres:
-        image: postgres:14.7
+        image: postgres:16-alpine
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: github_actions
         ports:
           - 5432:5432
-        # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v6
-    - name: Set up Python 3.10
+
+    - name: Set up Python 3.13
       uses: actions/setup-python@v6
       with:
-        python-version: '3.10'
+        python-version: '3.13'
+
     - uses: actions/cache@v4
       with:
         path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/pyproject.toml') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-    - name: psycopg3 prerequisites
-      run: sudo apt-get install python-dev-is-python3 libpq-dev
+
+    - name: Install PostgreSQL client libraries
+      run: sudo apt-get update && sudo apt-get install -y python3-dev libpq-dev
+
     - name: Install dependencies
       run: |
-        pip install -U pip
-        pip install uv
-        uv pip compile requirements.in
-        uv pip install -r requirements.txt --system
-        python -m pip install --upgrade pip
+        pip install -U pip uv
+        uv pip install --system -e ".[dev]"
+
+    - name: Run ruff linting
+      run: ruff check .
+
+    - name: Run ruff formatting check
+      run: ruff format --check .
+
+    - name: Run type checking with ty
+      run: ty check || echo "Type checking optional for now"
+      continue-on-error: true
+
+    - name: Validate prek hooks
+      run: prek run --all-files
+
     - name: Run migrations
       run: python manage.py migrate
+
     - name: Load Fixtures
       run: |
         if [ -d "fixture" ]; then
             python manage.py loaddata fixture/*.json
-        fi      
+        fi
+
     - name: Run tests
       uses: sjvrijn/pytest-last-failed@v2
       with:

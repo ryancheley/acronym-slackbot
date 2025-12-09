@@ -2,6 +2,10 @@ from pathlib import Path
 
 import environ
 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     DEBUG=(bool, False),
@@ -19,10 +23,8 @@ env = environ.Env(
     SECURE_PROXY_SSL_HEADER=(str, None),
 )
 
-environ.Env.read_env()
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+# Read .env file from project root
+environ.Env.read_env(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -56,6 +58,10 @@ INSTALLED_APPS = [
     "django.contrib.admindocs",
     # Third Party App
     "rest_framework",
+    "health_check",
+    "health_check.db",
+    "health_check.cache",
+    "health_check.storage",
     # Local
     "core",
     "acronyms",
@@ -172,11 +178,6 @@ else:
     # WhiteNoise configuration for production
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
-
-CRISPY_TEMPLATE_PACK = "tailwind"
-
-
 LOGIN_REDIRECT_URL = "pages:home"
 LOGOUT_REDIRECT_URL = "pages:home"
 
@@ -199,7 +200,7 @@ LOGGING = {
         "file": {
             "level": "ERROR",
             "class": "logging.FileHandler",
-            "filename": Path(BASE_DIR.parent / "debug.log"),
+            "filename": BASE_DIR / "debug.log",
         },
     },
     "loggers": {

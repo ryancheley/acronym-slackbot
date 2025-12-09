@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: acronym-db
+    environment:
+      POSTGRES_DB: acronyms
+      POSTGRES_USER: acronyms
+      POSTGRES_PASSWORD: acronyms_dev_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U acronyms"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - acronym-network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: acronym-web
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn core.wsgi:application --bind 0.0.0.0:8000 --workers 2 --reload"
+    volumes:
+      # Mount source code for hot reload in development
+      - .:/app
+      # Exclude virtual env to avoid conflicts
+      - /app/.venv
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - DATABASE_URL=postgresql://acronyms:acronyms_dev_password@db:5432/acronyms
+      - DEBUG=on
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - acronym-network
+
+volumes:
+  postgres_data:
+
+networks:
+  acronym-network:
+    driver: bridge

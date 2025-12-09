@@ -7,6 +7,7 @@ from rest_framework import status
 
 from acronyms.models import Acronym
 
+
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
@@ -24,7 +25,7 @@ def process_user_message(text: str, user: str):
     if definition:
         message = f"The acronym '{text.upper()}' means: {definition}"
     else:
-        confluence = CONFLUENCE_LINK + f'articles?query=%7B{text}%7D'
+        confluence = CONFLUENCE_LINK + f"articles?query=%7B{text}%7D"
         confluence_link = f"<{confluence}|YouTrack>"
         message = f"I'm sorry <@{user}> I don't know what *{text.upper()}* is :shrug:. Try checking {confluence_link}."
 
