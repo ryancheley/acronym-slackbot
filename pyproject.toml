@@ -9,7 +9,7 @@ packages = ["acronyms", "api", "core"]
 name = "acronym-slackbot"
 version = "1.0.0"
 description = "Django-based Slack bot for managing acronym definitions"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 readme = "README.md"
 authors = [
     {name = "Ryan Cheley", email = "rcheley@gmail.com"}
