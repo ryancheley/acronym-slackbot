@@ -10,9 +10,9 @@ branch_name := `git branch --show-current`
     git switch dev
     git merge "{{branch_name}}"
 
-# prunes remote branches from github
+# prunes remote branches from origin
 @prune:
-    git remote prune github
+    git remote prune origin
 
 # removes all but main and dev local branch
 @gitclean:
@@ -23,8 +23,21 @@ branch_name := `git branch --show-current`
     echo 'This may take a while ... got do something nice for yourself'
     mutmut run
 
-# checks the deployment for prod settings; will return error if the check doesn't pass
+# runs linting checks (ruff and format)
 @check:
+    ruff check .
+    ruff format --check .
+
+# runs the full linter via prek (ruff, djhtml, django-upgrade, zizmor)
+@lint:
+    prek run --all-files
+
+# upgrades Django code to the target version
+@upgrade:
+    django-upgrade --target-version 3.14 .
+
+# checks the deployment for prod settings; will return error if the check doesn't pass
+@check-deploy:
     cp core/.env core/.env_staging
     cp core/.env_prod core/.env
     -python manage.py check --deploy
@@ -34,10 +47,6 @@ branch_name := `git branch --show-current`
 @sync branch:
     git switch {{branch}}
     git pull origin {{branch}}
-
-# applies linting to project (ruff, djhtml, tryceratops, django-upgrade)
-@lint:
-    prek run --all-files
 
 @run:
     python manage.py runserver
