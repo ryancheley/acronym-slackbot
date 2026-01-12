@@ -13,9 +13,9 @@ updates:
         patterns:
           - "*"
     reviewers:
-      - "@ryancheley"
+      - "ryancheley"
     assignees:
-      - "@ryancheley"
+      - "ryancheley"
     commit-message:
       prefix: ":arrow_up: deps"
       include: "scope"
@@ -35,9 +35,9 @@ updates:
         patterns:
           - "*"
     reviewers:
-      - "@ryancheley"
+      - "ryancheley"
     assignees:
-      - "@ryancheley"
+      - "ryancheley"
     commit-message:
       prefix: ":construction_worker: ci"
       include: "scope"
