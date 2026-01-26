@@ -29,11 +29,11 @@ django-permissions-policy==4.28.0
     # via acronym-slackbot (pyproject.toml)
 djangorestframework==3.16.1
     # via acronym-slackbot (pyproject.toml)
-gunicorn==23.0.0
+gunicorn==24.1.1
     # via acronym-slackbot (pyproject.toml)
 idna==3.11
     # via requests
-packaging==25.0
+packaging==26.0
     # via
     #   django-csp
     #   gunicorn
