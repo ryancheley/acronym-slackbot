@@ -23,17 +23,17 @@ django-csp==4.0
     # via acronym-slackbot (pyproject.toml)
 django-environ==0.12.0
     # via acronym-slackbot (pyproject.toml)
-django-health-check==3.20.8
+django-health-check==3.21.0
     # via acronym-slackbot (pyproject.toml)
 django-permissions-policy==4.28.0
     # via acronym-slackbot (pyproject.toml)
 djangorestframework==3.16.1
     # via acronym-slackbot (pyproject.toml)
-gunicorn==23.0.0
+gunicorn==25.0.0
     # via acronym-slackbot (pyproject.toml)
 idna==3.11
     # via requests
-packaging==25.0
+packaging==26.0
     # via
     #   django-csp
     #   gunicorn
