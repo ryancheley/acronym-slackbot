@@ -20,7 +20,7 @@ dependencies = [
     "django-admin-interface",
     "django-csp",
     "django-environ",
-    "django-health-check",
+    "django-health-check<4.0",
     "django-permissions-policy",
     "gunicorn",
     "psycopg[binary]",
