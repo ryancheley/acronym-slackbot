@@ -58,10 +58,6 @@ INSTALLED_APPS = [
     "django.contrib.admindocs",
     # Third Party App
     "rest_framework",
-    "health_check",
-    "health_check.db",
-    "health_check.cache",
-    "health_check.storage",
     # Local
     "core",
     "acronyms",
