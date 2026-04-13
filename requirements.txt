@@ -6,9 +6,9 @@ asgiref==3.11.1
     #   django-permissions-policy
 certifi==2026.2.25
     # via requests
-charset-normalizer==3.4.6
+charset-normalizer==3.4.7
     # via requests
-django==6.0.3
+django==6.0.4
     # via
     #   acronym-slackbot (pyproject.toml)
     #   django-csp
@@ -23,7 +23,7 @@ django-csp==4.0
     # via acronym-slackbot (pyproject.toml)
 django-environ==0.13.0
     # via acronym-slackbot (pyproject.toml)
-django-health-check==4.2.1
+django-health-check==4.2.2
     # via acronym-slackbot (pyproject.toml)
 django-permissions-policy==4.29.0
     # via acronym-slackbot (pyproject.toml)
@@ -37,7 +37,7 @@ packaging==26.0
     # via
     #   django-csp
     #   gunicorn
-pillow==12.1.1
+pillow==12.2.0
     # via django-colorfield
 psycopg==3.3.3
     # via acronym-slackbot (pyproject.toml)
@@ -45,7 +45,7 @@ psycopg-binary==3.3.3
     # via psycopg
 python-slugify==8.0.4
     # via django-admin-interface
-requests==2.33.0
+requests==2.33.1
     # via acronym-slackbot (pyproject.toml)
 slack-sdk==3.41.0
     # via acronym-slackbot (pyproject.toml)

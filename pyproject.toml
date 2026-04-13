@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68.0"]
+requires = ["setuptools>=82.0.1"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
@@ -15,7 +15,7 @@ authors = [
     {name = "Ryan Cheley", email = "rcheley@gmail.com"}
 ]
 dependencies = [
-    "Django>=5.0",
+    "Django>=6.0.4",
     "djangorestframework",
     "django-admin-interface",
     "django-csp",
