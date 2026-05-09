@@ -39,9 +39,9 @@ packaging==26.2
     #   gunicorn
 pillow==12.2.0
     # via django-colorfield
-psycopg==3.3.3
+psycopg==3.3.4
     # via acronym-slackbot (pyproject.toml)
-psycopg-binary==3.3.3
+psycopg-binary==3.3.4
     # via psycopg
 python-slugify==8.0.4
     # via django-admin-interface
