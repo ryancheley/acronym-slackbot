@@ -29,6 +29,8 @@ django-permissions-policy==4.29.0
     # via acronym-slackbot (pyproject.toml)
 djangorestframework==3.17.1
     # via acronym-slackbot (pyproject.toml)
+dnspython==2.8.0
+    # via django-health-check
 gunicorn==26.0.0
     # via acronym-slackbot (pyproject.toml)
 idna==3.13
