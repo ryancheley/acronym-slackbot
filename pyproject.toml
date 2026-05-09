@@ -16,7 +16,7 @@ authors = [
 ]
 dependencies = [
     "Django>=5.0",
-    "djangorestframework",
+    "django>=6.0.5",
     "django-admin-interface",
     "django-csp",
     "django-environ",
