@@ -24,7 +24,7 @@ dependencies = [
     "django-health-check",
     "django-permissions-policy",
     "gunicorn",
-    "psycopg[binary]",
+    "psycopg[binary,pool]",
     "requests",
     "slack-sdk",
     "whitenoise",

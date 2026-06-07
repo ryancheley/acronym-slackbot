@@ -123,6 +123,14 @@ WSGI_APPLICATION = "core.wsgi.application"
 DATABASES = {
     "default": env.db(),
 }
+
+# Native connection pooling (psycopg3 + Django 5.1+).
+# Pooling requires CONN_MAX_AGE to be 0 (persistent connections are
+# managed by the pool, not Django).
+# https://docs.djangoproject.com/en/stable/ref/databases/#connection-pool
+DATABASES["default"]["CONN_MAX_AGE"] = 0
+DATABASES["default"].setdefault("OPTIONS", {})
+DATABASES["default"]["OPTIONS"]["pool"] = True
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
