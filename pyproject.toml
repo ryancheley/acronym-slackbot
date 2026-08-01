@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68.0"]
+requires = ["setuptools>=83.0.0"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
@@ -16,7 +16,7 @@ authors = [
 ]
 dependencies = [
     "Django>=5.0",
-    "django>=6.0.6",
+    "django>=6.0.7",
     "djangorestframework",
     "django-admin-interface",
     "django-csp",
