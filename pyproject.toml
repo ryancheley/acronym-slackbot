@@ -15,7 +15,7 @@ authors = [
     {name = "Ryan Cheley", email = "rcheley@gmail.com"}
 ]
 dependencies = [
-    "Django>=5.0",
+    "Django>=6.0.7",
     "django>=6.0.7",
     "djangorestframework",
     "django-admin-interface",
