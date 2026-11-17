@@ -6,6 +6,8 @@ on:
       - main
       - dev
 
+permissions: {}
+
 jobs:
 
   build:
@@ -25,15 +27,15 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-    - uses: actions/checkout@v7
+    - uses: actions/checkout@v7.0.1
       with:
         persist-credentials: false
     - name: Set up Python 3.15
-      uses: actions/setup-python@v7
+      uses: actions/setup-python@v7.1.0
       with:
         python-version: '3.15'
     - name: Install uv
-      uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2
+      uses: astral-sh/setup-uv@v10.3.3
       with:
         enable-cache: true
     - name: psycopg3 prerequisites
@@ -48,6 +50,19 @@ jobs:
             python manage.py loaddata fixture/*.json
         fi
     - name: Run tests
-      uses: sjvrijn/pytest-last-failed@2e80af88a65052ccd45a1480472776466d3aecff
+      uses: sjvrijn/pytest-last-failed@v2
       with:
         pytest-args: '--last-failed'
+
+  # Fails when .github/workflows/actions.lock is out of sync with the
+  # workflows or a locked pin no longer verifies upstream.
+  lockfile:
+    runs-on: ubuntu-slim
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+    - uses: actions/checkout@v7.0.1
+      with:
+        persist-credentials: false
+    - run: gh extension install github/gh-actions-lock --pin v0.4.1
+    - run: gh actions-lock --verify
